@@ -16,5 +16,10 @@ namespace GSB_TAC
         {
             InitializeComponent();
         }
+
+        private void FConnexion_Load(object sender, EventArgs e)
+        {
+            //cc mec
+        }
     }
 }
