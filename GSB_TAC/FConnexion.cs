@@ -19,7 +19,7 @@ namespace GSB_TAC
 
         private void FConnexion_Load(object sender, EventArgs e)
         {
-            //cc mec AAAAA
+            //cc mec BBBB
         }
     }
 }
