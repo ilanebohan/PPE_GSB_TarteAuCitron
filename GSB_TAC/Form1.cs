@@ -16,5 +16,21 @@ namespace GSB_TAC
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // Exemple : label1.Text = Modele2.UtilisateurConnecte.nom;
+           // Modele2.UtilisateurConnecte.
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
