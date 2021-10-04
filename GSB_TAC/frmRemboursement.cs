@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace GSB_TAC
 {
@@ -31,8 +32,14 @@ namespace GSB_TAC
 
         private void bsFicheFrais_CurrentChanged(object sender, EventArgs e)
         {
-            bsLigneFraisForfait.DataSource = Modele.listeFraisMois();
+            string mois = ((fichefrais)bsFicheFrais.Current).mois;
+            bsLigneFraisForfait.DataSource = Modele.listeFraisMois(mois);
             dgvFrais.DataSource = bsLigneFraisForfait;
+            dgvFrais.Columns[0].Visible = false;
+            dgvFrais.Columns[1].Visible = false;
+            dgvFrais.Columns[2].HeaderText = "Type de frais";
+            dgvFrais.Columns[4].Visible = false;
+            dgvFrais.Columns[5].Visible = false;
         }
     }
 }

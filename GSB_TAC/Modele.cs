@@ -29,10 +29,10 @@ namespace GSB_TAC
             return maConnexion.fichefrais.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur).ToList();
         }
 
-        public static List<LigneFraisForfait> listeFraisMois()
+        public static List<LigneFraisForfait> listeFraisMois(string mois)
         {
             return maConnexion.LigneFraisForfait.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
-                                                .Where(x => x.mois == ).ToList();
+                                                .Where(x => x.mois == mois).ToList();
         }
 
     }

@@ -37,10 +37,12 @@ namespace GSB_TAC
             this.bsFicheFrais = new System.Windows.Forms.BindingSource(this.components);
             this.dgvFrais = new System.Windows.Forms.DataGridView();
             this.bsLigneFraisForfait = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.bsVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFicheFrais)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrais)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLigneFraisForfait)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBvnVisiteur
@@ -76,16 +78,25 @@ namespace GSB_TAC
             // dgvFrais
             // 
             this.dgvFrais.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvFrais.Location = new System.Drawing.Point(10, 135);
+            this.dgvFrais.Location = new System.Drawing.Point(10, 145);
             this.dgvFrais.Name = "dgvFrais";
-            this.dgvFrais.Size = new System.Drawing.Size(755, 440);
+            this.dgvFrais.Size = new System.Drawing.Size(465, 430);
             this.dgvFrais.TabIndex = 3;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(675, 145);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(465, 430);
+            this.dataGridView1.TabIndex = 4;
             // 
             // frmRemboursement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 596);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dgvFrais);
             this.Controls.Add(this.cboDate);
             this.Controls.Add(this.lblFicheDePaie);
@@ -97,6 +108,7 @@ namespace GSB_TAC
             ((System.ComponentModel.ISupportInitialize)(this.bsFicheFrais)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrais)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLigneFraisForfait)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,5 +122,6 @@ namespace GSB_TAC
         private System.Windows.Forms.BindingSource bsFicheFrais;
         private System.Windows.Forms.DataGridView dgvFrais;
         private System.Windows.Forms.BindingSource bsLigneFraisForfait;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
