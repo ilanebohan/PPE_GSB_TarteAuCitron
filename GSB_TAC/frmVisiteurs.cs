@@ -10,16 +10,17 @@ using System.Windows.Forms;
 
 namespace GSB_TAC
 {
-    public partial class FConnexion : Form
+    public partial class frmVisiteurs : Form
     {
-        public FConnexion()
+        public frmVisiteurs()
         {
             InitializeComponent();
         }
 
-        private void FConnexion_Load(object sender, EventArgs e)
+        private void frmVisiteurs_Load(object sender, EventArgs e)
         {
-            //AAAA
+            bsVisiteur.DataSource = Modele.listevisiteur();
+            dgvVisiteur.DataSource = bsVisiteur;
         }
     }
 }

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace GSB_TAC
 {
-    public partial class Form1 : Form
+    public partial class frmBudget : Form
     {
-        public Form1()
+        public frmBudget()
         {
             InitializeComponent();
         }
