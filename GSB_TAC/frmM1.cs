@@ -26,7 +26,7 @@ namespace GSB_TAC
 
             lblSecteur.Visible = true;
             lblSecteur.Text = "Secteur : " + Modele.UtilisateurConnecte.Secteur.Select(x => x.libSecteur).ToString();
-            //Modele.UtilisateurConnecte.idVisiteur.ToString() == Modele.UtilisateurConnecte.Secteur.Select( x => x.idVisiteur).ToString()
+            //Modele.UtilisateurConnecte.idVisiteur.ToString() == Modele.UtilisateurConnecte.Secteur.Select( x => x.idVisiteur).ToString()aa
         }
 
         private void button1_Click(object sender, EventArgs e)
