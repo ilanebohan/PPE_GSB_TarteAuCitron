@@ -97,6 +97,12 @@
     <Compile Include="FraisForfait.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="frmAjoutFrais.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAjoutFrais.Designer.cs">
+      <DependentUpon>frmAjoutFrais.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmRemboursement.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -159,6 +165,9 @@
     </Compile>
     <EmbeddedResource Include="FConnexion.resx">
       <DependentUpon>FConnexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmAjoutFrais.resx">
+      <DependentUpon>frmAjoutFrais.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRemboursement.resx">
       <DependentUpon>frmRemboursement.cs</DependentUpon>

@@ -10,8 +10,14 @@ namespace GSB_TAC
     {
         private static connectGSB_TAC maConnexion;
         private static Visiteur visiteurChoisi;
+        private static int actionFrais; //Si = 1 : Ajout frais Si = 2 : modif frais
+        private static string moisChoisi;
+        private static LigneFraisForfait fraisChoisi;
 
         public static Visiteur VisiteurChoisi { get => visiteurChoisi; set => visiteurChoisi = value; }
+        public static int ActionFrais { get => actionFrais; set => actionFrais = value; }
+        public static string MoisChoisi { get => moisChoisi; set => moisChoisi = value; }
+        public static LigneFraisForfait FraisChoisi { get => fraisChoisi; set => fraisChoisi = value; }
 
         public static void init()
         {
@@ -33,6 +39,30 @@ namespace GSB_TAC
         {
             return maConnexion.LigneFraisForfait.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
                                                 .Where(x => x.mois == mois).ToList();
+        }
+
+        public static LigneFraisForfait donneFrais(string idVisi, string mois, string idForf, int qte)
+        {
+            LigneFraisForfait fretour;
+            fretour = maConnexion.LigneFraisForfait.Where(x => x.idVisiteur == idVisi)
+                                                   .Where(x => x.mois == mois)
+                                                   .Where(x => x.quantite == qte)
+                                                   .Where(x => x.idFraisForfait == idForf).ToList()[0];
+            return fretour;
+        }
+
+        public static bool suppFrais()
+        {
+            bool bretour = false;
+            try
+            {
+                maConnexion.LigneFraisForfait.Remove(FraisChoisi);
+                maConnexion.SaveChanges();
+                bretour = true;
+            }catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message + " " + e.InnerException.InnerException.Message);
+            }
         }
 
     }
