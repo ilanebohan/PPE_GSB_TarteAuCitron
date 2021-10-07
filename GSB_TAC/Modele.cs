@@ -12,9 +12,11 @@ namespace GSB_TAC
         private static connectGSB_TAC maConnexion;
         private static Visiteur utilisateurConnecte;
         private static Secteur secteurGerer;
+        private static List<Region> regionsGerer;
 
         public static Visiteur UtilisateurConnecte { get => utilisateurConnecte; set => utilisateurConnecte = value; }
         public static Secteur SecteurGerer { get => secteurGerer; set => secteurGerer = value; }
+        public static List<Region> RegionsGerer { get => regionsGerer; set => regionsGerer = value; }
 
         public static void init()
         {
@@ -26,10 +28,12 @@ namespace GSB_TAC
         {
             return maConnexion.Visiteur.ToList();
         }
+
         public static List<Secteur> listesecteur()
         {
             return maConnexion.Secteur.ToList();
         }
+
 
 
         public static bool userexists(string id)
@@ -46,7 +50,7 @@ namespace GSB_TAC
             return vretour;
         }
 
-        public static bool isResponsable(string id)
+        public static bool isResponsablesecteur(string id)
         {
             bool vretour = false;
 
@@ -58,7 +62,20 @@ namespace GSB_TAC
             }
             return vretour;
         }
-            public static bool passexists(string mdp)
+        public static bool isResponsableregion(string id)
+        {
+            bool vretour = false;
+
+            if (maConnexion.Region.Where(x => x.idVisiteur == id).ToList().Count == 1)
+            {
+                vretour = true;
+                RegionsGerer = maConnexion.Region.Where(x => x.idVisiteur == id).ToList();
+                maConnexion.SaveChanges();
+            }
+            return vretour;
+        }
+       
+        public static bool passexists(string mdp)
         {
             bool vretour = false;
             if (UtilisateurConnecte.password.Equals(GetMd5Hash(mdp)))

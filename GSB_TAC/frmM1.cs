@@ -23,11 +23,15 @@ namespace GSB_TAC
             lblLabo.Text = "Labo : " + Modele.UtilisateurConnecte.Laboratoire.nomLabo;
 
 
-            if (Modele.isResponsable(Modele.UtilisateurConnecte.idVisiteur))
+            if (Modele.isResponsablesecteur(Modele.UtilisateurConnecte.idVisiteur))
             { 
                 lblSecteur.Visible = true;
                 lblSecteur.Text = "Secteur Géré : " + Modele.SecteurGerer.libSecteur;
             }
+            if (Modele.isResponsableregion(Modele.UtilisateurConnecte.idVisiteur))
+            {
+            }
+            
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace GSB_TAC
 {
@@ -19,8 +20,47 @@ namespace GSB_TAC
 
         private void frmVisiteurs_Load(object sender, EventArgs e)
         {
-            bsVisiteur.DataSource = Modele.listevisiteur();
-            dgvVisiteur.DataSource = bsVisiteur;
+
+            cboSecteur.ValueMember = "idSecteur";
+            cboSecteur.DisplayMember = "libSecteur";
+            bsSecteur.DataSource = Modele.listesecteur();
+            cboSecteur.DataSource = bsSecteur;
+        
         }
+
+        private void bsSecteur_CurrentChanged(object sender, EventArgs e)
+        {
+            bsRegion.DataSource = ((Secteur)bsSecteur.Current).Region.ToList();
+            dgvRegion.DataSource = bsRegion;
+            lblRespsecteur.Text = ((Secteur)bsSecteur.Current).Visiteur.prenom + " " + ((Secteur)bsSecteur.Current).Visiteur.nom;
+
+            dgvRegion.Columns[0].Visible = false;
+            dgvRegion.Columns[2].Visible = false;
+            dgvRegion.Columns[3].Visible = false;
+            dgvRegion.Columns[4].Visible = false;
+            dgvRegion.Columns[5].Visible = false;
+            dgvRegion.Columns[6].Visible = false;
+        }
+
+
+
+        private void bsRegion_CurrentChanged(object sender, EventArgs e)
+        {
+            bsVisiteur.DataSource = ((Region)bsRegion.Current).Visiteur1;
+            dgvVisiteur.DataSource = bsVisiteur;
+            lblRespregion.Text = ((Region)bsRegion.Current).Visiteur.prenom + " " + ((Region)bsRegion.Current).Visiteur.nom;
+
+            dgvVisiteur.Columns[0].Visible = false;
+            dgvVisiteur.Columns[1].Visible = false;
+            dgvVisiteur.Columns[2].Visible = false;
+            dgvVisiteur.Columns[3].Visible = false;
+            dgvVisiteur.Columns[4].Visible = false;
+            dgvVisiteur.Columns[5].Visible = false;
+            dgvVisiteur.Columns[6].Visible = false;
+            dgvVisiteur.Columns[7].Visible = false;
+            dgvVisiteur.Columns[14].Visible = false;
+            dgvVisiteur.Columns[15].Visible = false;
+        }
+
     }
 }
