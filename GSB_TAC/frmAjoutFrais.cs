@@ -25,6 +25,15 @@ namespace GSB_TAC
                 case 1: lblAction.Text = string.Format("Création d'une note de frais");break;
                 case 2: lblAction.Text = string.Format("Modification d'une note de frais");break;
             }
+
+            bsTypeFrais.DataSource = Modele.listeTypeFrais();
+
+            cboTypeFrais.ValueMember = "id";
+            cboTypeFrais.DisplayMember = "libelle";
+            cboTypeFrais.DataSource = bsTypeFrais;
+
+
+
         }
     }
 }

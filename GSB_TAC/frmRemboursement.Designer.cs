@@ -43,14 +43,18 @@ namespace GSB_TAC
             this.bsFicheFrais = new System.Windows.Forms.BindingSource(this.components);
             this.bsLigneFraisForfait = new System.Windows.Forms.BindingSource(this.components);
             this.bsLigneFraisHForfait = new System.Windows.Forms.BindingSource(this.components);
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnModifF = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
+            this.dgvKm = new System.Windows.Forms.DataGridView();
+            this.bsKm = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrais)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFraisHForfait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsFicheFrais)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLigneFraisForfait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLigneFraisHForfait)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvKm)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsKm)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBvnVisiteur
@@ -84,7 +88,7 @@ namespace GSB_TAC
             this.dgvFrais.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFrais.Location = new System.Drawing.Point(10, 145);
             this.dgvFrais.Name = "dgvFrais";
-            this.dgvFrais.Size = new System.Drawing.Size(565, 430);
+            this.dgvFrais.Size = new System.Drawing.Size(565, 190);
             this.dgvFrais.TabIndex = 3;
             // 
             // dgvFraisHForfait
@@ -137,15 +141,15 @@ namespace GSB_TAC
             // 
             this.bsFicheFrais.CurrentChanged += new System.EventHandler(this.bsFicheFrais_CurrentChanged);
             // 
-            // button1
+            // btnModifF
             // 
-            this.button1.Location = new System.Drawing.Point(580, 200);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(30, 30);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "M";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnModifF.Location = new System.Drawing.Point(580, 200);
+            this.btnModifF.Name = "btnModifF";
+            this.btnModifF.Size = new System.Drawing.Size(30, 30);
+            this.btnModifF.TabIndex = 9;
+            this.btnModifF.Text = "M";
+            this.btnModifF.UseVisualStyleBackColor = true;
+            this.btnModifF.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -156,13 +160,22 @@ namespace GSB_TAC
             this.button2.Text = "M";
             this.button2.UseVisualStyleBackColor = true;
             // 
+            // dgvKm
+            // 
+            this.dgvKm.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvKm.Location = new System.Drawing.Point(10, 390);
+            this.dgvKm.Name = "dgvKm";
+            this.dgvKm.Size = new System.Drawing.Size(565, 190);
+            this.dgvKm.TabIndex = 11;
+            // 
             // frmRemboursement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1243, 621);
+            this.Controls.Add(this.dgvKm);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnModifF);
             this.Controls.Add(this.btnSuppHFrais);
             this.Controls.Add(this.btnSuppFrais);
             this.Controls.Add(this.btnAjoutHFrais);
@@ -181,6 +194,8 @@ namespace GSB_TAC
             ((System.ComponentModel.ISupportInitialize)(this.bsFicheFrais)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLigneFraisForfait)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsLigneFraisHForfait)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvKm)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsKm)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,7 +215,9 @@ namespace GSB_TAC
         private System.Windows.Forms.Button btnAjoutHFrais;
         private System.Windows.Forms.Button btnSuppFrais;
         private System.Windows.Forms.Button btnSuppHFrais;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnModifF;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.DataGridView dgvKm;
+        private System.Windows.Forms.BindingSource bsKm;
     }
 }

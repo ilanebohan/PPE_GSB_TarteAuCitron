@@ -27,31 +27,38 @@ namespace GSB_TAC
             bsFicheFrais.DataSource = Modele.listFicheFraisVisiteur();
             cboDate.DataSource = bsFicheFrais;
 
-
         }
 
         private void bsFicheFrais_CurrentChanged(object sender, EventArgs e)
         {
-            //string mois = ((fichefrais)bsFicheFrais.Current).mois;
-            /*bsLigneFraisForfait.DataSource = Modele.listeFraisMois(mois);
-            dgvFrais.DataSource = bsLigneFraisForfait;
-            dgvFrais.Columns[0].Visible = false;
-            dgvFrais.Columns[1].Visible = false;
-            dgvFrais.Columns[2].HeaderText = "Type de frais";
-            dgvFrais.Columns[4].Visible = false;
-            dgvFrais.Columns[5].Visible = false;*/
+
             bsLigneFraisForfait.DataSource = ((fichefrais)bsFicheFrais.Current).LigneFraisForfait.Select(x => new
             {
-
+                x.idVisiteur,
+                x.mois,
                 x.idFraisForfait,
                 x.FraisForfait.libelle,
                 x.quantite,
                 x.FraisForfait.montant,
                 total = (float) x.FraisForfait.montant * x.quantite //Multiplication de la quantié par le montant du type de forfait
-            });
+            }).Where(x => !x.idFraisForfait.StartsWith("KM"));
             dgvFrais.DataSource = bsLigneFraisForfait;
+            dgvFrais.Columns[0].Visible = false;
+            dgvFrais.Columns[1].Visible = false;
 
-            
+            bsKm.DataSource = ((fichefrais)bsFicheFrais.Current).LigneFraisForfait.Select( x => new {
+                x.idVisiteur,
+                x.mois,
+                x.idFraisForfait,
+                x.FraisForfait.libelle,
+                x.quantite,
+                x.FraisForfait.montant,
+                total = (float)x.FraisForfait.montant * x.quantite //Multiplication de la quantié par le montant du type de forfait
+            }).Where(x => x.idFraisForfait.StartsWith("KM"));
+
+            dgvKm.DataSource = bsKm;
+            dgvKm.Columns[0].Visible = false;
+            dgvKm.Columns[1].Visible = false;
 
         }
 
@@ -66,18 +73,21 @@ namespace GSB_TAC
 
         private void btnSuppFrais_Click(object sender, EventArgs e)
         {
-            System.Type type = bsLigneFraisForfait.Current.GetType();
+            Type type = bsLigneFraisForfait.Current.GetType();
             string idVisi = (string)type.GetProperty("idVisiteur").GetValue(bsLigneFraisForfait.Current, null);
             string idFrais = (string)type.GetProperty("idFraisForfait").GetValue(bsLigneFraisForfait.Current, null);
             string mois = (string)type.GetProperty("mois").GetValue(bsLigneFraisForfait.Current, null);
-            int qte = (int)type.GetProperty("quantite").GetValue(bsLigneFraisForfait.Current, null);
+
+            Modele.FraisChoisi = Modele.donneFrais(idVisi, mois, idFrais);
+
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             string message = string.Format("Voulez vous vraiment supprimer cet ligne ?");
             DialogResult result;
             result = MessageBox.Show(message, "Confirmation",buttons);
             if(result == System.Windows.Forms.DialogResult.Yes)
             {
-                Modele.
+                Modele.suppFrais();
+                bsFicheFrais_CurrentChanged(new object(), new EventArgs());
             }
 
         }

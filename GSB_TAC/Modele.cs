@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace GSB_TAC
 {
@@ -41,15 +42,21 @@ namespace GSB_TAC
                                                 .Where(x => x.mois == mois).ToList();
         }
 
-        public static LigneFraisForfait donneFrais(string idVisi, string mois, string idForf, int qte)
+        public static LigneFraisForfait donneFrais(string idVisi, string mois, string idForf)
         {
             LigneFraisForfait fretour;
             fretour = maConnexion.LigneFraisForfait.Where(x => x.idVisiteur == idVisi)
                                                    .Where(x => x.mois == mois)
-                                                   .Where(x => x.quantite == qte)
                                                    .Where(x => x.idFraisForfait == idForf).ToList()[0];
             return fretour;
         }
+
+
+        public static List<FraisForfait> listeTypeFrais()
+        {
+            return maConnexion.FraisForfait.ToList();
+        }
+
 
         public static bool suppFrais()
         {
@@ -61,9 +68,11 @@ namespace GSB_TAC
                 bretour = true;
             }catch (Exception e)
             {
-                System.Windows.Forms.MessageBox.Show(e.Message + " " + e.InnerException.InnerException.Message);
-            }
-        }
+                Debug.WriteLine(e);
+                System.Windows.Forms.MessageBox.Show(e.Message);
 
+            }
+            return bretour;
+        }
     }
 }
