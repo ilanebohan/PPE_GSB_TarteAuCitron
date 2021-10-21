@@ -27,13 +27,31 @@ namespace GSB_TAC
             { 
                 lblSecteur.Visible = true;
                 lblSecteur.Text = "Secteur Géré : " + Modele.SecteurGerer.libSecteur;
+                gestionSecteursToolStripMenuItem.Visible = true;
             }
             if (Modele.isResponsableregion(Modele.UtilisateurConnecte.idVisiteur))
             {
-            }
-            
-        }
+                gestionRégionsToolStripMenuItem.Visible = true;
+                lblRegion.Visible = true;
+                lblRegion.Text = "Régions gérées : ";
+                dgvRegions.Visible = true;
+                bsRegion.DataSource = Modele.listeregion().Where(x => x.idVisiteur == Modele.UtilisateurConnecte.idVisiteur);
+                dgvRegions.DataSource = bsRegion;
+                dgvRegions.Columns[0].Visible = false;
+                dgvRegions.Columns[1].Visible = false;
+                dgvRegions.Columns[2].Visible = false;
+                dgvRegions.Columns[3].Visible = false;
+                dgvRegions.Columns[5].Visible = false;
 
+            }
+
+            /* if (Modele.isResponsablelabo(Modele.UtilisateurConnecte.idVisiteur))
+             {
+                gestionLaboGSBToolStripMenuItem.Visible = true;
+                
+             }*/
+
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             lblNouveaunom.Visible = true;
@@ -53,8 +71,35 @@ namespace GSB_TAC
         private void visiteursToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Form maForm = new frmVisiteurs();
-            //maForm.MdiParent = this;
             maForm.Show();
+        }
+
+        private void gestionSecteursToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form maForm = new frmGestionsecteur();
+            maForm.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void gestionRégionsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form maform = new frmGestionregion();
+            maform.Show();
+        }
+
+        private void btnChangementinfos_Click(object sender, EventArgs e)
+        {
+            Modele.ModifUtilisateur(txtNouveaunom.Text, txtNouveauprenom.Text);
+        }
+
+        private void gestionLaboGSBToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form maform = new frmGestionlabo();
+            maform.Show();
         }
     }
 }

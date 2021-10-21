@@ -17,23 +17,18 @@ namespace GSB_TAC
         {
             InitializeComponent();
         }
-
         private void frmVisiteurs_Load(object sender, EventArgs e)
         {
-
             cboSecteur.ValueMember = "idSecteur";
             cboSecteur.DisplayMember = "libSecteur";
             bsSecteur.DataSource = Modele.listesecteur();
             cboSecteur.DataSource = bsSecteur;
-        
         }
-
         private void bsSecteur_CurrentChanged(object sender, EventArgs e)
         {
             bsRegion.DataSource = ((Secteur)bsSecteur.Current).Region.ToList();
             dgvRegion.DataSource = bsRegion;
-            lblRespsecteur.Text = ((Secteur)bsSecteur.Current).Visiteur.prenom + " " + ((Secteur)bsSecteur.Current).Visiteur.nom;
-
+            lblRespsecteur.Text = "Reponsable du secteur : " + ((Secteur)bsSecteur.Current).Visiteur.prenom + " " + ((Secteur)bsSecteur.Current).Visiteur.nom;
             dgvRegion.Columns[0].Visible = false;
             dgvRegion.Columns[2].Visible = false;
             dgvRegion.Columns[3].Visible = false;
@@ -41,16 +36,21 @@ namespace GSB_TAC
             dgvRegion.Columns[5].Visible = false;
             dgvRegion.Columns[6].Visible = false;
         }
-
-
-
         private void bsRegion_CurrentChanged(object sender, EventArgs e)
         {
-            bsVisiteur.DataSource = ((Region)bsRegion.Current).Visiteur1;
-            dgvVisiteur.DataSource = bsVisiteur;
-            lblRespregion.Text = ((Region)bsRegion.Current).Visiteur.prenom + " " + ((Region)bsRegion.Current).Visiteur.nom;
+           
 
-            dgvVisiteur.Columns[0].Visible = false;
+            if (((Region)bsRegion.Current).Visiteur1.Count > 0)
+            {
+                bsVisiteur.DataSource = ((Region)bsRegion.Current).Visiteur1;
+                dgvVisiteur.DataSource = bsVisiteur;
+                lblRespregion.Text = "Responsable de la région : " + ((Region)bsRegion.Current).Visiteur.prenom + " " + ((Region)bsRegion.Current).Visiteur.nom;
+
+
+                dgvVisiteur.Visible = true;
+                lblPasdevisiteur.Visible = false;
+
+                dgvVisiteur.Columns[0].Visible = false;
             dgvVisiteur.Columns[1].Visible = false;
             dgvVisiteur.Columns[2].Visible = false;
             dgvVisiteur.Columns[3].Visible = false;
@@ -60,6 +60,15 @@ namespace GSB_TAC
             dgvVisiteur.Columns[7].Visible = false;
             dgvVisiteur.Columns[14].Visible = false;
             dgvVisiteur.Columns[15].Visible = false;
+            }
+            else if (((Region)bsRegion.Current).Visiteur1.Count == 0)
+            {
+
+
+                dgvVisiteur.Visible = false;
+                lblPasdevisiteur.Visible = true;
+                lblRespregion.Text = "Aucun responsable de région !";
+            }
         }
 
     }

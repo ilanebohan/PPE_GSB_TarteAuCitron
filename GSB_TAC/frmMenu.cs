@@ -29,5 +29,11 @@ namespace GSB_TAC
             maForm.Show();
 
         }
+
+        public void isMdiParent()
+        {
+            MdiParent = this;
+        }
+
     }
 }

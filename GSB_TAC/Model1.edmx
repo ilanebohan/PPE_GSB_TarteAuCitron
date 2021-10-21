@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GSB_TACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GSB_TACModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Etat">
           <Key>
             <PropertyRef Name="id" />
@@ -107,6 +107,15 @@
           <Property Name="idMedicament" Type="char" MaxLength="12" Nullable="false" />
           <Property Name="quantite" Type="int" />
         </EntityType>
+        <EntityType Name="PRESENTER">
+          <Key>
+            <PropertyRef Name="idRapport" />
+            <PropertyRef Name="idMedicament" />
+          </Key>
+          <Property Name="idRapport" Type="int" Nullable="false" />
+          <Property Name="idMedicament" Type="char" MaxLength="12" Nullable="false" />
+          <Property Name="quantite" Type="int" />
+        </EntityType>
         <EntityType Name="RAPPORT">
           <Key>
             <PropertyRef Name="idRapport" />
@@ -164,6 +173,9 @@
           <Property Name="dateEmbauche" Type="char" MaxLength="10" />
           <Property Name="identifiant" Type="varchar" MaxLength="16" Nullable="false" />
           <Property Name="password" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="actif" Type="bit" />
+          <Property Name="motifLicenciement" Type="varchar" MaxLength="20" />
+          <Property Name="dateLicenciement" Type="varchar" MaxLength="10" />
         </EntityType>
         <Association Name="FK__fichefrai__idEta__2F10007B">
           <End Role="Etat" Type="Self.Etat" Multiplicity="0..1" />
@@ -397,6 +409,7 @@
           <EntitySet Name="MEDICAMENT" EntityType="Self.MEDICAMENT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MOTIF" EntityType="Self.MOTIF" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OFFRIR" EntityType="Self.OFFRIR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRESENTER" EntityType="Self.PRESENTER" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="RAPPORT" EntityType="Self.RAPPORT" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Region" EntityType="Self.Region" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Secteur" EntityType="Self.Secteur" Schema="dbo" store:Type="Tables" />
@@ -476,8 +489,7 @@
             <End Role="RAPPORT" EntitySet="RAPPORT" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GSB_TACModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -666,6 +678,9 @@
           <NavigationProperty Name="Region" Relationship="Self.FK_VISITEUR" FromRole="Visiteur" ToRole="Region" />
           <NavigationProperty Name="Secteur" Relationship="Self.FK_VISITEURSECTEUR" FromRole="Visiteur" ToRole="Secteur" />
           <NavigationProperty Name="Region1" Relationship="Self.Travailler" FromRole="Visiteur" ToRole="Region" />
+          <Property Name="actif" Type="Boolean" />
+          <Property Name="motifLicenciement" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="dateLicenciement" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK__fichefrai__idEta__2F10007B">
           <End Role="Etat" Type="Self.Etat" Multiplicity="0..1" />
@@ -952,7 +967,17 @@
             <End Role="Region" EntitySet="Region" />
             <End Role="Visiteur" EntitySet="Visiteur" />
           </AssociationSet>
+          <EntitySet Name="PRESENTER" EntityType="GSB_TACModel.PRESENTER" />
         </EntityContainer>
+        <EntityType Name="PRESENTER">
+          <Key>
+            <PropertyRef Name="idRapport" />
+            <PropertyRef Name="idMedicament" />
+          </Key>
+          <Property Name="idRapport" Type="Int32" Nullable="false" />
+          <Property Name="idMedicament" Type="String" Nullable="false" MaxLength="12" FixedLength="true" Unicode="false" />
+          <Property Name="quantite" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1110,6 +1135,9 @@
           <EntitySetMapping Name="Visiteur">
             <EntityTypeMapping TypeName="GSB_TACModel.Visiteur">
               <MappingFragment StoreEntitySet="Visiteur">
+                <ScalarProperty Name="dateLicenciement" ColumnName="dateLicenciement" />
+                <ScalarProperty Name="motifLicenciement" ColumnName="motifLicenciement" />
+                <ScalarProperty Name="actif" ColumnName="actif" />
                 <ScalarProperty Name="idVisiteur" ColumnName="idVisiteur" />
                 <ScalarProperty Name="idLabo" ColumnName="idLabo" />
                 <ScalarProperty Name="nom" ColumnName="nom" />
@@ -1131,6 +1159,15 @@
               <ScalarProperty Name="idVisiteur" ColumnName="idVisiteur" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="PRESENTER">
+            <EntityTypeMapping TypeName="GSB_TACModel.PRESENTER">
+              <MappingFragment StoreEntitySet="PRESENTER">
+                <ScalarProperty Name="quantite" ColumnName="quantite" />
+                <ScalarProperty Name="idMedicament" ColumnName="idMedicament" />
+                <ScalarProperty Name="idRapport" ColumnName="idRapport" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

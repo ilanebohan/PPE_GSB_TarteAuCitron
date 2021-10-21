@@ -34,6 +34,9 @@ namespace GSB_TAC
         public string dateEmbauche { get; set; }
         public string identifiant { get; set; }
         public string password { get; set; }
+        public Nullable<bool> actif { get; set; }
+        public string motifLicenciement { get; set; }
+        public string dateLicenciement { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<fichefrais> fichefrais { get; set; }

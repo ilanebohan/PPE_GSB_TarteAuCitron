@@ -29,6 +29,7 @@ namespace GSB_TAC
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.lblInfos = new System.Windows.Forms.Label();
             this.btnModif = new System.Windows.Forms.Button();
             this.txtNouveaunom = new System.Windows.Forms.TextBox();
@@ -40,8 +41,16 @@ namespace GSB_TAC
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.budgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visiteursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionSecteursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionRégionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gestionLaboGSBToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblSecteur = new System.Windows.Forms.Label();
+            this.lblRegion = new System.Windows.Forms.Label();
+            this.dgvRegions = new System.Windows.Forms.DataGridView();
+            this.bsRegion = new System.Windows.Forms.BindingSource(this.components);
             this.menuStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegions)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegion)).BeginInit();
             this.SuspendLayout();
             // 
             // lblInfos
@@ -50,9 +59,9 @@ namespace GSB_TAC
             this.lblInfos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInfos.Location = new System.Drawing.Point(33, 38);
             this.lblInfos.Name = "lblInfos";
-            this.lblInfos.Size = new System.Drawing.Size(13, 17);
+            this.lblInfos.Size = new System.Drawing.Size(125, 17);
             this.lblInfos.TabIndex = 0;
-            this.lblInfos.Text = "-";
+            this.lblInfos.Text = "Infos nominatives :";
             // 
             // btnModif
             // 
@@ -109,6 +118,7 @@ namespace GSB_TAC
             this.btnChangementinfos.Text = "OK";
             this.btnChangementinfos.UseVisualStyleBackColor = true;
             this.btnChangementinfos.Visible = false;
+            this.btnChangementinfos.Click += new System.EventHandler(this.btnChangementinfos_Click);
             // 
             // lblLabo
             // 
@@ -116,20 +126,24 @@ namespace GSB_TAC
             this.lblLabo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLabo.Location = new System.Drawing.Point(313, 38);
             this.lblLabo.Name = "lblLabo";
-            this.lblLabo.Size = new System.Drawing.Size(13, 17);
+            this.lblLabo.Size = new System.Drawing.Size(192, 17);
             this.lblLabo.TabIndex = 7;
-            this.lblLabo.Text = "-";
+            this.lblLabo.Text = "Laboratoire d\'appartenance :";
             // 
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.budgetToolStripMenuItem,
-            this.visiteursToolStripMenuItem});
+            this.visiteursToolStripMenuItem,
+            this.gestionSecteursToolStripMenuItem,
+            this.gestionRégionsToolStripMenuItem,
+            this.gestionLaboGSBToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(800, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(772, 24);
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // budgetToolStripMenuItem
             // 
@@ -145,22 +159,68 @@ namespace GSB_TAC
             this.visiteursToolStripMenuItem.Text = "Visiteur(s)";
             this.visiteursToolStripMenuItem.Click += new System.EventHandler(this.visiteursToolStripMenuItem_Click);
             // 
+            // gestionSecteursToolStripMenuItem
+            // 
+            this.gestionSecteursToolStripMenuItem.Name = "gestionSecteursToolStripMenuItem";
+            this.gestionSecteursToolStripMenuItem.Size = new System.Drawing.Size(114, 20);
+            this.gestionSecteursToolStripMenuItem.Text = "Gestion Secteur(s)";
+            this.gestionSecteursToolStripMenuItem.Visible = false;
+            this.gestionSecteursToolStripMenuItem.Click += new System.EventHandler(this.gestionSecteursToolStripMenuItem_Click);
+            // 
+            // gestionRégionsToolStripMenuItem
+            // 
+            this.gestionRégionsToolStripMenuItem.Name = "gestionRégionsToolStripMenuItem";
+            this.gestionRégionsToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.gestionRégionsToolStripMenuItem.Text = "Gestion Région(s)";
+            this.gestionRégionsToolStripMenuItem.Visible = false;
+            this.gestionRégionsToolStripMenuItem.Click += new System.EventHandler(this.gestionRégionsToolStripMenuItem_Click);
+            // 
+            // gestionLaboGSBToolStripMenuItem
+            // 
+            this.gestionLaboGSBToolStripMenuItem.Name = "gestionLaboGSBToolStripMenuItem";
+            this.gestionLaboGSBToolStripMenuItem.Size = new System.Drawing.Size(112, 20);
+            this.gestionLaboGSBToolStripMenuItem.Text = "Gestion Labo GSB";
+            this.gestionLaboGSBToolStripMenuItem.Visible = false;
+            this.gestionLaboGSBToolStripMenuItem.Click += new System.EventHandler(this.gestionLaboGSBToolStripMenuItem_Click);
+            // 
             // lblSecteur
             // 
             this.lblSecteur.AutoSize = true;
             this.lblSecteur.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSecteur.Location = new System.Drawing.Point(524, 38);
             this.lblSecteur.Name = "lblSecteur";
-            this.lblSecteur.Size = new System.Drawing.Size(13, 17);
+            this.lblSecteur.Size = new System.Drawing.Size(102, 17);
             this.lblSecteur.TabIndex = 9;
-            this.lblSecteur.Text = "-";
+            this.lblSecteur.Text = "Secteur géré : ";
             this.lblSecteur.Visible = false;
+            // 
+            // lblRegion
+            // 
+            this.lblRegion.AutoSize = true;
+            this.lblRegion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegion.Location = new System.Drawing.Point(524, 74);
+            this.lblRegion.Name = "lblRegion";
+            this.lblRegion.Size = new System.Drawing.Size(140, 17);
+            this.lblRegion.TabIndex = 10;
+            this.lblRegion.Text = "Région(s) gérée(s) : ";
+            this.lblRegion.Visible = false;
+            // 
+            // dgvRegions
+            // 
+            this.dgvRegions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRegions.Location = new System.Drawing.Point(514, 94);
+            this.dgvRegions.Name = "dgvRegions";
+            this.dgvRegions.Size = new System.Drawing.Size(246, 106);
+            this.dgvRegions.TabIndex = 11;
+            this.dgvRegions.Visible = false;
             // 
             // frmM1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(772, 230);
+            this.Controls.Add(this.dgvRegions);
+            this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblSecteur);
             this.Controls.Add(this.lblLabo);
             this.Controls.Add(this.btnChangementinfos);
@@ -177,6 +237,8 @@ namespace GSB_TAC
             this.Load += new System.EventHandler(this.frmM1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegions)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bsRegion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -196,5 +258,11 @@ namespace GSB_TAC
         private System.Windows.Forms.ToolStripMenuItem budgetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visiteursToolStripMenuItem;
         private System.Windows.Forms.Label lblSecteur;
+        private System.Windows.Forms.ToolStripMenuItem gestionSecteursToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gestionRégionsToolStripMenuItem;
+        private System.Windows.Forms.Label lblRegion;
+        private System.Windows.Forms.ToolStripMenuItem gestionLaboGSBToolStripMenuItem;
+        private System.Windows.Forms.DataGridView dgvRegions;
+        private System.Windows.Forms.BindingSource bsRegion;
     }
 }

@@ -38,6 +38,7 @@ namespace GSB_TAC
             this.bsRegion = new System.Windows.Forms.BindingSource(this.components);
             this.dgvRegion = new System.Windows.Forms.DataGridView();
             this.lblRespregion = new System.Windows.Forms.Label();
+            this.lblPasdevisiteur = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSecteur)).BeginInit();
@@ -95,11 +96,22 @@ namespace GSB_TAC
             this.lblRespregion.TabIndex = 7;
             this.lblRespregion.Text = "Responsable region : ";
             // 
+            // lblPasdevisiteur
+            // 
+            this.lblPasdevisiteur.AutoSize = true;
+            this.lblPasdevisiteur.Location = new System.Drawing.Point(487, 200);
+            this.lblPasdevisiteur.Name = "lblPasdevisiteur";
+            this.lblPasdevisiteur.Size = new System.Drawing.Size(217, 13);
+            this.lblPasdevisiteur.TabIndex = 8;
+            this.lblPasdevisiteur.Text = "/!\\ Aucun visiteurs attribué à cette région /!\\";
+            this.lblPasdevisiteur.Visible = false;
+            // 
             // frmVisiteurs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblPasdevisiteur);
             this.Controls.Add(this.lblRespregion);
             this.Controls.Add(this.dgvRegion);
             this.Controls.Add(this.cboSecteur);
@@ -128,5 +140,6 @@ namespace GSB_TAC
         private System.Windows.Forms.BindingSource bsRegion;
         private System.Windows.Forms.DataGridView dgvRegion;
         private System.Windows.Forms.Label lblRespregion;
+        private System.Windows.Forms.Label lblPasdevisiteur;
     }
 }
