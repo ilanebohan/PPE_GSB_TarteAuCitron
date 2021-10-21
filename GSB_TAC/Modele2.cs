@@ -18,7 +18,7 @@ namespace GSB_TAC
         {
             /* Instantiation d’un objet de la classe typée chaine de connexion SqlConnection */
             maConnexion = new connectGSB_TAC();
-            utilisateurConnecte = maConnexion.Visiteur.Where(x => x.idVisiteur = "a13").ToList()[0];
+            utilisateurConnecte = maConnexion.Visiteur.Where(x => x.idVisiteur == "a13").ToList()[0];
     }
 
     }
