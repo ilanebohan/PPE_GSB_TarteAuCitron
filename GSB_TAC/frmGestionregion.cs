@@ -13,19 +13,13 @@ namespace GSB_TAC
 
         private void frmGestionregion_Load(object sender, EventArgs e)
         {
-            //bsVisiteur.DataSource = Modele.listevisiteur();
-            //dgvVisiteur.DataSource = bsVisiteur;
             bsLabo.DataSource = Modele.listelabo();
             cboLabo.DataSource = bsLabo;
             bsRegion.DataSource = Modele.listeregion();
             dgvRegion.DataSource = bsRegion;
             cboLabo.ValueMember = "idLabo";//permet de stocker l'identifiant
             cboLabo.DisplayMember = "nomLabo";
-
             dgvRegion.Columns[0].Visible = false;
-            //dgvRegion.Columns[1].Visible = false;
-            //dgvRegion.Columns[2].Visible = false;
-
         }
 
         private void btnCreatenew_Click(object sender, EventArgs e)
@@ -123,8 +117,8 @@ namespace GSB_TAC
             if (!Modele.VisiteurChoisi.Region1.Contains(Modele.RegionChoisie))
             {
                 
-                    Modele.AssocierRegion(Modele.RegionChoisie);
-                    MessageBox.Show("Association effectuée");
+                 Modele.AssocierRegion(Modele.RegionChoisie);
+                 MessageBox.Show("Association effectuée");
                 
             }
             else if (Modele.VisiteurChoisi.Region1.Contains(Modele.RegionChoisie))
@@ -155,9 +149,9 @@ namespace GSB_TAC
                     Modele.DissocierRegion(Modele.RegionChoisie);
                     MessageBox.Show("Dissociation effectuée !");
                 }
-                else if (!(Modele.RegionChoisie.idVisiteur == Modele.UtilisateurConnecte.idVisiteur))
+                else if (Modele.RegionChoisie.idVisiteur != Modele.UtilisateurConnecte.idVisiteur)
                 {
-                    MessageBox.Show("Impossible de dissocier un Visiteur qui ne travaile pas dans une de vos régions !");
+                    MessageBox.Show("Impossible de dissocier un visiteur qui ne travaile pas dans une de vos régions !");
                 }
             }
             else if (Modele.VisiteurChoisi.Region1.Count == 1)
@@ -181,13 +175,33 @@ namespace GSB_TAC
 
         private void button3_Click(object sender, EventArgs e)
         {
+
+
+            System.Type type = bsRegion.Current.GetType();
+            int id = (int)type.GetProperty("idRegion").GetValue(bsRegion.Current, null);
+            Modele.RegionChoisie = Modele.trouveregionbyid(id);
+
             System.Type typeVis = bsVisiteur.Current.GetType();
             string idVis = (string)typeVis.GetProperty("idVisiteur").GetValue(bsVisiteur.Current, null);
             Modele.VisiteurChoisi = Modele.trouvevisiteurbyid(idVis);
 
-            Form maform = new frmLicenciement();
-            maform.ShowDialog();
-
+            foreach (Region R in Modele.UtilisateurConnecte.Region)
+            {
+                if (Modele.VisiteurChoisi.Region1.Contains(R))
+                {
+                    Form maform = new frmLicenciement();
+                    maform.ShowDialog();
+                    break;
+                }
+                else
+                {
+                    
+                    MessageBox.Show("Erreur, impossible de licencier un visiteur qui ne travaille pas dans une de vos régions.");
+                    break;
+                }
+            }
+           
+        
             bsRegion_CurrentChanged(new Object(), new EventArgs());
         }
 
@@ -203,13 +217,29 @@ namespace GSB_TAC
             string idVis = (string)typeVis.GetProperty("idVisiteur").GetValue(bsVisiteur.Current, null);
             Modele.VisiteurChoisi = Modele.trouvevisiteurbyid(idVis);
 
-            if (Modele.DesactiverVisiteur())
+
+
+            foreach (Region R in Modele.UtilisateurConnecte.Region)
             {
-                MessageBox.Show("Désactivation réussie !");
-            }
-            else if (!Modele.DesactiverVisiteur())
-            {
-                MessageBox.Show("Erreur : Impossible de désactiver un utilisateur qui est déjà inactif");
+                if (Modele.VisiteurChoisi.Region1.Contains(R))
+                {
+                    if (Modele.DesactiverVisiteur())
+                    {
+                        MessageBox.Show("Désactivation réussie !");
+                        break;
+                    }
+                    else if (!Modele.DesactiverVisiteur())
+                    {
+                        MessageBox.Show("Erreur : Impossible de désactiver un utilisateur qui est déjà inactif");
+                        break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Erreur, vous ne pouvez pas désactiver un visiteur qui n'est pas attribué à votre région");
+                    break;
+                }
+
             }
 
 
@@ -222,14 +252,29 @@ namespace GSB_TAC
             string idVis = (string)typeVis.GetProperty("idVisiteur").GetValue(bsVisiteur.Current, null);
             Modele.VisiteurChoisi = Modele.trouvevisiteurbyid(idVis);
 
-            if (Modele.ActiverVisiteur())
+
+            foreach (Region R in Modele.UtilisateurConnecte.Region)
             {
-                MessageBox.Show("Activation réussie !");
+                if (Modele.VisiteurChoisi.Region1.Contains(R))
+                {
+                    if (Modele.ActiverVisiteur())
+                    {
+                        MessageBox.Show("Activation réussie !");
+                        break;
+                    }
+                    else if (!Modele.ActiverVisiteur())
+                    {
+                        MessageBox.Show("Erreur : Impossible d'activer un utilisateur déjà actif ou qui a été licencié");
+                        break;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Erreur, vous ne pouvez pas activer un visiteur qui n'est pas attribué à votre région");
+                    break;
+                }
             }
-            else if (!Modele.ActiverVisiteur())
-            {
-                MessageBox.Show("Erreur : Impossible d'activer un utilisateur déjà actif");
-            }
+     
             bsRegion_CurrentChanged(new Object(), new EventArgs());
 
         }

@@ -157,6 +157,7 @@ namespace GSB_TAC
             this.Controls.Add(this.lblMDP);
             this.Controls.Add(this.lblIdentifiant);
             this.Controls.Add(this.btnConnexion);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "frmConnexion";
             this.Text = "frmConnexion";
             this.Load += new System.EventHandler(this.frmConnexion_Load);

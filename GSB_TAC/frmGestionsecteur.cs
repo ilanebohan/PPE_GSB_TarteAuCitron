@@ -27,10 +27,6 @@ namespace GSB_TAC
 
             dgvVisiteur.Columns[0].Visible = false;
             dgvVisiteur.Columns[1].Visible = false;
-            //dgvVisiteur.Columns[2].Visible = false;
-            //dgvVisiteur.Columns[3].Visible = false;
-            //dgvVisiteur.Columns[4].Visible = false;
-            //dgvVisiteur.Columns[5].Visible = false;
 
         }
         private void bsRegion_CurrentChanged(object sender, EventArgs e)
@@ -94,22 +90,8 @@ namespace GSB_TAC
             {
                 MessageBox.Show("Erreur : Impossible de désactiver un utilisateur qui est déjà inactif");
             }
-
-
             bsRegion_CurrentChanged(new Object(), new EventArgs());
         }
-        /*
-        private bool tests()
-        {
-            bool vretour = true;
-            error1.Clear();
-            if (String.IsNullOrEmpty(txtLibregion.Text))
-            {
-                error1.SetError(txtLibregion, "Le nom de la région doit être renseigné.");
-                vretour = false;
-            }
-            return vretour;
-        }
-        */
+ 
     }
 }

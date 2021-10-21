@@ -183,8 +183,8 @@ namespace GSB_TAC
 
             if(visiteurChoisi.actif == true)
             { 
-            visiteurChoisi.actif = false;
-            maConnexion.SaveChanges();
+                visiteurChoisi.actif = false;
+                maConnexion.SaveChanges();
                 vretour = true;
             }
             return vretour;
@@ -196,9 +196,12 @@ namespace GSB_TAC
 
             if (visiteurChoisi.actif == false)
             {
+                if (visiteurChoisi.dateLicenciement == null && visiteurChoisi.motifLicenciement == null)
+                { 
                 visiteurChoisi.actif = true;
                 maConnexion.SaveChanges();
                 vretour = true;
+                }
             }
             return vretour;
         }
@@ -265,6 +268,20 @@ namespace GSB_TAC
             }
             return vretour;
         }
+
+        public static bool passexists(string mdp)
+        {
+            bool vretour = false;
+            if (UtilisateurConnecte.password.Equals(GetMd5Hash(mdp)) && UtilisateurConnecte.actif == true)
+            {
+                vretour = true;
+                maConnexion.SaveChanges();
+            }
+            return vretour;
+        }
+
+
+
         public static bool isResponsablesecteur(string id)
         {
             bool vretour = false;
@@ -289,16 +306,7 @@ namespace GSB_TAC
             }
             return vretour;
         }
-        public static bool passexists(string mdp)
-        {
-            bool vretour = false;
-            if (UtilisateurConnecte.password.Equals(GetMd5Hash(mdp)) && UtilisateurConnecte.actif == true)
-            {
-                vretour = true;
-                maConnexion.SaveChanges();
-            }
-            return vretour;
-        }
+
         public static bool changepass(string nouveaumdp)
         {
             bool vretour = false;
