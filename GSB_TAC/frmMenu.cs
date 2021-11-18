@@ -30,10 +30,7 @@ namespace GSB_TAC
 
         }
 
-        public void isMdiParent()
-        {
-            MdiParent = this;
-        }
+       
 
     }
 }

@@ -48,6 +48,7 @@ namespace GSB_TAC
             this.lblRegion = new System.Windows.Forms.Label();
             this.dgvRegions = new System.Windows.Forms.DataGridView();
             this.bsRegion = new System.Windows.Forms.BindingSource(this.components);
+            this.btnDeco = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegions)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegion)).BeginInit();
@@ -214,11 +215,22 @@ namespace GSB_TAC
             this.dgvRegions.TabIndex = 11;
             this.dgvRegions.Visible = false;
             // 
+            // btnDeco
+            // 
+            this.btnDeco.Location = new System.Drawing.Point(12, 195);
+            this.btnDeco.Name = "btnDeco";
+            this.btnDeco.Size = new System.Drawing.Size(124, 23);
+            this.btnDeco.TabIndex = 12;
+            this.btnDeco.Text = "Se déconnecter";
+            this.btnDeco.UseVisualStyleBackColor = true;
+            this.btnDeco.Click += new System.EventHandler(this.btnDeco_Click);
+            // 
             // frmM1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(772, 230);
+            this.Controls.Add(this.btnDeco);
             this.Controls.Add(this.dgvRegions);
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblSecteur);
@@ -264,5 +276,6 @@ namespace GSB_TAC
         private System.Windows.Forms.ToolStripMenuItem gestionLaboGSBToolStripMenuItem;
         private System.Windows.Forms.DataGridView dgvRegions;
         private System.Windows.Forms.BindingSource bsRegion;
+        private System.Windows.Forms.Button btnDeco;
     }
 }

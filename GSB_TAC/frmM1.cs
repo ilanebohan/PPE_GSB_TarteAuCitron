@@ -101,5 +101,17 @@ namespace GSB_TAC
             Form maform = new frmGestionlabo();
             maform.Show();
         }
+
+        private void btnDeco_Click(object sender, EventArgs e)
+        {
+            Form[] forms = Application.OpenForms.Cast<Form>().ToArray();
+            foreach (Form thisForm in forms)
+            {
+               thisForm.Close();
+            }
+            Form maform = new frmConnexion();
+            maform.Show();
+
+        }
     }
 }

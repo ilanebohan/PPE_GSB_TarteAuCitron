@@ -24,7 +24,6 @@ namespace GSB_TAC
             dgvRegion.Columns[0].Visible = false;
             dgvRegion.Columns[1].Visible = false;
             dgvRegion.Columns[2].Visible = false;
-
             dgvVisiteur.Columns[0].Visible = false;
             dgvVisiteur.Columns[1].Visible = false;
 

@@ -195,7 +195,6 @@ namespace GSB_TAC
                 }
                 else
                 {
-                    
                     MessageBox.Show("Erreur, impossible de licencier un visiteur qui ne travaille pas dans une de vos régions.");
                     break;
                 }
