@@ -29,6 +29,7 @@ namespace GSB_TAC
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmConnexion));
             this.btnConnexion = new System.Windows.Forms.Button();
             this.lblIdentifiant = new System.Windows.Forms.Label();
             this.lblMDP = new System.Windows.Forms.Label();
@@ -145,7 +146,8 @@ namespace GSB_TAC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(608, 336);
+            this.BackgroundImage = global::GSB_TAC.Properties.Resources.logo___CONNEXION;
+            this.ClientSize = new System.Drawing.Size(631, 374);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.lblNouveaumdp);
             this.Controls.Add(this.lblAncienmdp);
@@ -158,6 +160,7 @@ namespace GSB_TAC
             this.Controls.Add(this.lblIdentifiant);
             this.Controls.Add(this.btnConnexion);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmConnexion";
             this.Text = "frmConnexion";
             this.Load += new System.EventHandler(this.frmConnexion_Load);

@@ -30,6 +30,7 @@ namespace GSB_TAC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmM1));
             this.lblInfos = new System.Windows.Forms.Label();
             this.btnModif = new System.Windows.Forms.Button();
             this.txtNouveaunom = new System.Windows.Forms.TextBox();
@@ -39,7 +40,6 @@ namespace GSB_TAC
             this.btnChangementinfos = new System.Windows.Forms.Button();
             this.lblLabo = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.budgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.visiteursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionSecteursToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gestionRégionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -134,7 +134,6 @@ namespace GSB_TAC
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.budgetToolStripMenuItem,
             this.visiteursToolStripMenuItem,
             this.gestionSecteursToolStripMenuItem,
             this.gestionRégionsToolStripMenuItem,
@@ -145,13 +144,6 @@ namespace GSB_TAC
             this.menuStrip1.TabIndex = 8;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
-            // 
-            // budgetToolStripMenuItem
-            // 
-            this.budgetToolStripMenuItem.Name = "budgetToolStripMenuItem";
-            this.budgetToolStripMenuItem.Size = new System.Drawing.Size(70, 20);
-            this.budgetToolStripMenuItem.Text = "Budget(s)";
-            this.budgetToolStripMenuItem.Click += new System.EventHandler(this.budgetToolStripMenuItem_Click);
             // 
             // visiteursToolStripMenuItem
             // 
@@ -243,6 +235,7 @@ namespace GSB_TAC
             this.Controls.Add(this.btnModif);
             this.Controls.Add(this.lblInfos);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "frmM1";
             this.Text = "frmM1";
@@ -267,7 +260,6 @@ namespace GSB_TAC
         private System.Windows.Forms.Button btnChangementinfos;
         private System.Windows.Forms.Label lblLabo;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem budgetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem visiteursToolStripMenuItem;
         private System.Windows.Forms.Label lblSecteur;
         private System.Windows.Forms.ToolStripMenuItem gestionSecteursToolStripMenuItem;

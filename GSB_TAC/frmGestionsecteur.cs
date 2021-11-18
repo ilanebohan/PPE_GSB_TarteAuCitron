@@ -44,11 +44,22 @@ namespace GSB_TAC
             string idVis = (string)typeVis.GetProperty("idVisiteur").GetValue(bsVisiteur.Current, null);
             Modele.VisiteurChoisi = Modele.trouvevisiteurbyid(idVis);
 
+
+
+
+
+            if (Modele.ModifRegion(Modele.RegionChoisie.libRegion, Modele.VisiteurChoisi.idVisiteur))
+            { 
             Modele.ModifRegion(Modele.RegionChoisie.libRegion, Modele.VisiteurChoisi.idVisiteur);
             MessageBox.Show("Modification effectuée !");
             bsRegion_CurrentChanged(new Object(), new EventArgs());
             bsRegion.DataSource = Modele.listeregion().Where(x => x.idSecteur == Modele.SecteurGerer.idSecteur);
             dgvRegion.DataSource = bsRegion;
+            }
+            else if (!Modele.ModifRegion(Modele.RegionChoisie.libRegion, Modele.VisiteurChoisi.idVisiteur))
+            {
+                MessageBox.Show("Désolé, mais cet utilisateur est déjà chef de la région choisie");
+            }
         }
         private void button3_Click(object sender, EventArgs e)
         {

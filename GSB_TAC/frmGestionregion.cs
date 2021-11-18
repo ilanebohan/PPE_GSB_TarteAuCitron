@@ -233,7 +233,7 @@ namespace GSB_TAC
                         break;
                     }
                 }
-                else
+                else if (!Modele.VisiteurChoisi.Region1.Contains(R))
                 {
                     MessageBox.Show("Erreur, vous ne pouvez pas désactiver un visiteur qui n'est pas attribué à votre région");
                     break;

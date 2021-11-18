@@ -63,11 +63,17 @@ namespace GSB_TAC
             }
             else if (((Region)bsRegion.Current).Visiteur1.Count == 0)
             {
-
-
                 dgvVisiteur.Visible = false;
                 lblPasdevisiteur.Visible = true;
+
+                if (((Region)bsRegion.Current).Visiteur == null)
+                { 
                 lblRespregion.Text = "Aucun responsable de région !";
+                }
+                else if (((Region)bsRegion.Current).Visiteur != null)
+                {
+                    lblRespregion.Text = "Responsable de la région : " + ((Region)bsRegion.Current).Visiteur.prenom + " " + ((Region)bsRegion.Current).Visiteur.nom;
+                }
             }
         }
 

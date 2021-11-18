@@ -223,11 +223,11 @@ namespace GSB_TAC
         }
 
 
-        public static bool DesactiverVisiteur()
+        public static bool DesactiverVisiteur() // Permet de désactiver un utilisateur (actif = false)
         {
             bool vretour = false;
 
-            if (visiteurChoisi.actif == true)
+            if (visiteurChoisi.actif == true || visiteurChoisi.actif == null)
             {
                 visiteurChoisi.actif = false;
                 maConnexion.SaveChanges();
@@ -236,11 +236,11 @@ namespace GSB_TAC
             return vretour;
         }
 
-        public static bool ActiverVisiteur()
+        public static bool ActiverVisiteur() // Permet d'activer un utilisateur (actif = true)
         {
             bool vretour = false;
 
-            if (visiteurChoisi.actif == false)
+            if (visiteurChoisi.actif == false || visiteurChoisi.actif == null)
             {
                 if (visiteurChoisi.dateLicenciement == null && visiteurChoisi.motifLicenciement == null)
                 {
@@ -274,13 +274,21 @@ namespace GSB_TAC
 
         public static bool ModifRegion(string nom, string idvisiteur)
         {
-            bool vretour = true;
+            bool vretour = false;
 
             try
             {
-                regionChoisie.libRegion = nom;
-                regionChoisie.idVisiteur = idvisiteur;
-                maConnexion.SaveChanges();
+                if (visiteurChoisi != regionChoisie.Visiteur)
+                { 
+                    regionChoisie.libRegion = nom;
+                    regionChoisie.idVisiteur = idvisiteur;
+                    maConnexion.SaveChanges();
+                    vretour = true;
+                }
+                else if (visiteurChoisi == regionChoisie.Visiteur)
+                {
+                    vretour = false;
+                }
             }
             catch (Exception ex)
             {

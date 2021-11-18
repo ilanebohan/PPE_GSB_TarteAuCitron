@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGestionsecteur));
             this.lblSecteurgerer = new System.Windows.Forms.Label();
             this.lblRegion = new System.Windows.Forms.Label();
             this.lblRespreg = new System.Windows.Forms.Label();
@@ -154,6 +155,7 @@
             this.Controls.Add(this.lblRespreg);
             this.Controls.Add(this.lblRegion);
             this.Controls.Add(this.lblSecteurgerer);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGestionsecteur";
             this.Text = "frmGestionsecteur";
             this.Load += new System.EventHandler(this.frmGestionsecteur_Load);

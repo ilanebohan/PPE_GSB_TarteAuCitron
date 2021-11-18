@@ -30,20 +30,21 @@ namespace GSB_TAC
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVisiteurs));
             this.dgvVisiteur = new System.Windows.Forms.DataGridView();
-            this.bsVisiteur = new System.Windows.Forms.BindingSource(this.components);
             this.lblRespsecteur = new System.Windows.Forms.Label();
             this.cboSecteur = new System.Windows.Forms.ComboBox();
-            this.bsSecteur = new System.Windows.Forms.BindingSource(this.components);
-            this.bsRegion = new System.Windows.Forms.BindingSource(this.components);
             this.dgvRegion = new System.Windows.Forms.DataGridView();
             this.lblRespregion = new System.Windows.Forms.Label();
             this.lblPasdevisiteur = new System.Windows.Forms.Label();
+            this.bsVisiteur = new System.Windows.Forms.BindingSource(this.components);
+            this.bsSecteur = new System.Windows.Forms.BindingSource(this.components);
+            this.bsRegion = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisiteur)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegion)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsVisiteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSecteur)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegion)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegion)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvVisiteur
@@ -70,14 +71,6 @@ namespace GSB_TAC
             this.cboSecteur.Name = "cboSecteur";
             this.cboSecteur.Size = new System.Drawing.Size(121, 21);
             this.cboSecteur.TabIndex = 5;
-            // 
-            // bsSecteur
-            // 
-            this.bsSecteur.CurrentChanged += new System.EventHandler(this.bsSecteur_CurrentChanged);
-            // 
-            // bsRegion
-            // 
-            this.bsRegion.CurrentChanged += new System.EventHandler(this.bsRegion_CurrentChanged);
             // 
             // dgvRegion
             // 
@@ -106,6 +99,14 @@ namespace GSB_TAC
             this.lblPasdevisiteur.Text = "/!\\ Aucun visiteurs attribué à cette région /!\\";
             this.lblPasdevisiteur.Visible = false;
             // 
+            // bsSecteur
+            // 
+            this.bsSecteur.CurrentChanged += new System.EventHandler(this.bsSecteur_CurrentChanged);
+            // 
+            // bsRegion
+            // 
+            this.bsRegion.CurrentChanged += new System.EventHandler(this.bsRegion_CurrentChanged);
+            // 
             // frmVisiteurs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -117,14 +118,15 @@ namespace GSB_TAC
             this.Controls.Add(this.cboSecteur);
             this.Controls.Add(this.lblRespsecteur);
             this.Controls.Add(this.dgvVisiteur);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmVisiteurs";
             this.Text = "frmVisiteurs";
             this.Load += new System.EventHandler(this.frmVisiteurs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisiteur)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRegion)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsVisiteur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsSecteur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsRegion)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvRegion)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

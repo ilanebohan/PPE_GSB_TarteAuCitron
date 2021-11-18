@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLicenciement));
             this.btnValider = new System.Windows.Forms.Button();
             this.cboMotif = new System.Windows.Forms.ComboBox();
             this.dtpDatelicencier = new System.Windows.Forms.DateTimePicker();
@@ -92,6 +93,7 @@
             this.Controls.Add(this.dtpDatelicencier);
             this.Controls.Add(this.cboMotif);
             this.Controls.Add(this.btnValider);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLicenciement";
             this.Text = "frmLicenciement";
             this.Load += new System.EventHandler(this.frmLicenciement_Load);
