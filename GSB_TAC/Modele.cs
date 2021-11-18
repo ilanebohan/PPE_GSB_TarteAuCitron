@@ -66,11 +66,55 @@ namespace GSB_TAC
             return maConnexion.FraisForfait.ToList();
         }
 
-        public static List<LigneFraisHorsForfait> donneFraisHForfait()
+
+        public static List<LigneFraisForfait> listeLigneFrais()
+        {
+            return maConnexion.LigneFraisForfait.Where(x =>x.mois == moisChoisi).ToList();
+        }
+
+
+
+
+
+        public static List<FraisForfait> listeTypeFraisExistant()
+        {
+            List<FraisForfait> vretour = new List<FraisForfait>();
+           foreach(LigneFraisForfait frais in listeLigneFrais())
+            {
+                foreach(FraisForfait typeFrais in listeTypeFrais())
+                {
+                    if(frais.idFraisForfait == typeFrais.id)
+                    {
+                        vretour.Add(typeFrais);
+                    }
+                }
+            }
+            return vretour;
+        }
+
+
+
+        public static List<LigneFraisHorsForfait> listeFraisHForfait()
         {
             List<LigneFraisHorsForfait> lretour;
             lretour = maConnexion.LigneFraisHorsForfait.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
                                                        .Where(x => x.mois == moisChoisi).ToList();
+            return lretour;
+        }
+
+        public static LigneFraisHorsForfait donneFraisHForfait(int id)
+        {
+            LigneFraisHorsForfait lretour;
+            try
+            {
+                lretour = maConnexion.LigneFraisHorsForfait.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
+                                                           .Where(x => x.mois == moisChoisi)
+                                                           .Where(x => x.id == id).ToList()[0];
+            }catch(Exception e)
+            {
+                lretour = null;
+            }
+
             return lretour;
         }
 
@@ -83,7 +127,6 @@ namespace GSB_TAC
                 fraisChoisi = new LigneFraisForfait();
                 fraisChoisi.idVisiteur = idVisiteur;
                 fraisChoisi.mois = mois;
-                Debug.WriteLine(typeFrais);
                 fraisChoisi.idFraisForfait = typeFrais;
                 fraisChoisi.quantite = qte;
                 vretour = true;
@@ -107,7 +150,7 @@ namespace GSB_TAC
 
             try
             {
-                fraisChoisi.quantite += qte;
+                fraisChoisi.quantite = qte;
                 maConnexion.SaveChanges();
             }catch(Exception e)
             {
@@ -139,27 +182,31 @@ namespace GSB_TAC
         public static bool ajoutHorsFrais(string idVi, string mois, string libelle, DateTime date, decimal montant)
         {
             bool vretour = false;
-            int id;
+            /*int id;
             List<LigneFraisHorsForfait> list_fhf = maConnexion.LigneFraisHorsForfait.Where(x => x.mois == moisChoisi).ToList();
+            Debug.WriteLine(list_fhf.Count());
             if(list_fhf.Count() == 0)
             {
-                id = 0;
+                id = 1;
+                Debug.WriteLine("Je suis ici");
             }
             else
             {
-                id = list_fhf[list_fhf.Count()].id + 1;
-            }
+                id = (list_fhf[list_fhf.Count()-1].id)+1;
+                Debug.WriteLine("Je suis passé par là");
+            } Pas utile, auto increment dans la BD de l'id */
 
 
             try
             {
                 hFraisChoisi = new LigneFraisHorsForfait();
-                hFraisChoisi.id = id;
                 hFraisChoisi.idVisiteur = idVi;
                 hFraisChoisi.mois = mois;
                 hFraisChoisi.libelle = libelle;
                 hFraisChoisi.date = date;
                 hFraisChoisi.montant = montant;
+
+                Debug.WriteLine(hFraisChoisi.id);
 
                 maConnexion.LigneFraisHorsForfait.Add(hFraisChoisi);
                 maConnexion.SaveChanges();
@@ -173,5 +220,22 @@ namespace GSB_TAC
             return vretour;
         }
 
+        public static bool suppHFrais()
+        {
+            bool bretour = false;
+            try
+            {
+                maConnexion.LigneFraisHorsForfait.Remove(HFraisChoisi);
+                maConnexion.SaveChanges();
+                bretour = true;
+            }
+            catch (Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                maConnexion.Dispose();
+                init();
+            }
+            return bretour;
+        }
     }
 }

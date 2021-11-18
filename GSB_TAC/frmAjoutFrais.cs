@@ -23,8 +23,8 @@ namespace GSB_TAC
             lblInfoVisiteur.Text = string.Format("Visiteur : {0} {1}", Modele.VisiteurChoisi.nom, Modele.VisiteurChoisi.prenom);
             switch (Modele.ActionFrais)
             {
-                case 1: lblAction.Text = string.Format("Création d'une note de frais");break;
-                case 2: lblAction.Text = string.Format("Modification d'une note de frais");break;
+                case 1: lblAction.Text = string.Format("Création d'une note de frais");btnValider.Text = "Ajouter";break;
+                case 2: lblAction.Text = string.Format("Modification d'une note de frais");btnValider.Text = "Modifier";chbxHorsForfait.Visible=false; bsTypeFrais.DataSource = Modele.listeTypeFraisExistant(); break;
             }
 
             lblLibelleHf.Visible = false;
@@ -33,7 +33,7 @@ namespace GSB_TAC
             lblDate.Visible = false;
             dtpHForfait.Visible = false;
 
-            bsTypeFrais.DataSource = Modele.listeTypeFrais();
+           
 
             cboTypeFrais.ValueMember = "id";
             cboTypeFrais.DisplayMember = "libelle";
@@ -99,6 +99,14 @@ namespace GSB_TAC
                 dtpHForfait.Visible = false;
                 cboTypeFrais.Enabled = true;
                 lblQte.Text = "Quantité : ";
+            }
+        }
+
+        private void bsTypeFrais_CurrentChanged(object sender, EventArgs e)
+        {
+            if (Modele.ActionFrais == 2)
+            {
+                txtbQte.Text = Convert.ToString(((FraisForfait)bsTypeFrais.Current).LigneFraisForfait.Select(x => x.quantite).ToList()[0]);
             }
         }
     }

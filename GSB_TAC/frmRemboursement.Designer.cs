@@ -171,6 +171,7 @@ namespace GSB_TAC
             this.btnSuppFraisHf.TabIndex = 14;
             this.btnSuppFraisHf.Text = "Supprimer le frais";
             this.btnSuppFraisHf.UseVisualStyleBackColor = true;
+            this.btnSuppFraisHf.Click += new System.EventHandler(this.btnSuppFraisHf_Click);
             // 
             // frmRemboursement
             // 

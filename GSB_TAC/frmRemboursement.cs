@@ -51,7 +51,8 @@ namespace GSB_TAC
                 dgvFrais.Columns[3].HeaderText = "Type de Frais";
             }
             catch { }
-            bsKm.DataSource = ((fichefrais)bsFicheFrais.Current).LigneFraisForfait.Select(x => new {
+            bsKm.DataSource = ((fichefrais)bsFicheFrais.Current).LigneFraisForfait.Select(x => new
+            {
                 x.idVisiteur,
                 x.mois,
                 x.idFraisForfait,
@@ -62,7 +63,8 @@ namespace GSB_TAC
             }).Where(x => x.idFraisForfait.StartsWith("KM"));
 
             dgvKm.DataSource = bsKm;
-            try { 
+            try
+            {
                 dgvKm.Columns[0].Visible = false;
                 dgvKm.Columns[1].Visible = false;
                 dgvKm.Columns[2].HeaderText = "Code de Frais";
@@ -70,7 +72,7 @@ namespace GSB_TAC
             }
             catch { }
 
-            bsLigneFraisHForfait.DataSource = Modele.donneFraisHForfait();
+            bsLigneFraisHForfait.DataSource = Modele.listeFraisHForfait();
             dgvFraisHForfait.DataSource = bsLigneFraisHForfait;
 
             try
@@ -79,7 +81,7 @@ namespace GSB_TAC
                 dgvFraisHForfait.Columns[2].Visible = false;
                 dgvFraisHForfait.Columns[6].Visible = false;
             }
-            catch{ }
+            catch { }
 
 
         }
@@ -89,11 +91,11 @@ namespace GSB_TAC
             Modele.ActionFrais = 1;
             Modele.MoisChoisi = ((fichefrais)bsFicheFrais.Current).mois;
             frmAjoutFrais faf = new frmAjoutFrais();
-            if(faf.ShowDialog() == DialogResult.OK)
+            if (faf.ShowDialog() == DialogResult.OK)
             {
                 bsFicheFrais_CurrentChanged(new object(), new EventArgs());
             }
-            
+
         }
 
         private void btnSuppFrais_Click(object sender, EventArgs e)
@@ -108,8 +110,8 @@ namespace GSB_TAC
             MessageBoxButtons buttons = MessageBoxButtons.YesNo;
             string message = string.Format("Voulez vous vraiment supprimer cet ligne ?");
             DialogResult result;
-            result = MessageBox.Show(message, "Confirmation",buttons);
-            if(result == System.Windows.Forms.DialogResult.Yes)
+            result = MessageBox.Show(message, "Confirmation", buttons);
+            if (result == System.Windows.Forms.DialogResult.Yes)
             {
                 Modele.suppFrais();
                 bsFicheFrais_CurrentChanged(new object(), new EventArgs());
@@ -132,22 +134,59 @@ namespace GSB_TAC
 
         private void btnSuppFraisKm_Click(object sender, EventArgs e)
         {
-            Type type = bsKm.Current.GetType();
 
-            string idVisi = (string)type.GetProperty("idVisiteur").GetValue(bsKm.Current, null);
-            string idFrais = (string)type.GetProperty("idFraisForfait").GetValue(bsKm.Current, null);
-            string mois = (string)type.GetProperty("mois").GetValue(bsKm.Current, null);
+            List<LigneFraisHorsForfait> frais = Modele.listeFraisHForfait();
 
-            Modele.FraisChoisi = Modele.donneFrais(idVisi, mois, idFrais);
-
-            MessageBoxButtons buttons = MessageBoxButtons.YesNo;
-            string message = string.Format("Voulez vous vraiment supprimer cet ligne ?");
-            DialogResult result;
-            result = MessageBox.Show(message, "Confirmation", buttons);
-            if (result == System.Windows.Forms.DialogResult.Yes)
+            if (frais.Count() != 0)
             {
-                Modele.suppFrais();
-                bsFicheFrais_CurrentChanged(new object(), new EventArgs());
+
+                Type type = bsKm.Current.GetType();
+
+                string idVisi = (string)type.GetProperty("idVisiteur").GetValue(bsKm.Current, null);
+                string idFrais = (string)type.GetProperty("idFraisForfait").GetValue(bsKm.Current, null);
+                string mois = (string)type.GetProperty("mois").GetValue(bsKm.Current, null);
+
+                Modele.FraisChoisi = Modele.donneFrais(idVisi, mois, idFrais);
+
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                string message = string.Format("Voulez vous vraiment supprimer cet ligne ?");
+                DialogResult result;
+                result = MessageBox.Show(message, "Confirmation", buttons);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Modele.suppFrais();
+                    bsFicheFrais_CurrentChanged(new object(), new EventArgs());
+                }
+            }
+        }
+
+        private void btnSuppFraisHf_Click(object sender, EventArgs e)
+        {
+
+            if (bsLigneFraisHForfait.Current != null)
+            {
+
+                Type type = bsLigneFraisHForfait.Current.GetType();
+                int id = (int)type.GetProperty("id").GetValue(bsLigneFraisHForfait.Current, null);
+
+                    Modele.HFraisChoisi = Modele.donneFraisHForfait(id);
+
+                    MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                    string message = string.Format("Voulez-vous vraiment supprimer cette ligne ?");
+                    DialogResult result;
+                    result = MessageBox.Show(message, "Confirmation", buttons);
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        Modele.suppHFrais();
+                        bsFicheFrais_CurrentChanged(new object(), new EventArgs());
+                    }
+            }
+            else
+            {
+               MessageBoxButtons button = MessageBoxButtons.OK;
+               string msg = string.Format("Suppression impossible, aucun entrée disponible ");
+               MessageBox.Show(msg, "Erreur", button);
+               
             }
         }
     }

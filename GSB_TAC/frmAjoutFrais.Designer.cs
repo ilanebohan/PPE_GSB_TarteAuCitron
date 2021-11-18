@@ -73,6 +73,10 @@ namespace GSB_TAC
             this.cboTypeFrais.Size = new System.Drawing.Size(121, 21);
             this.cboTypeFrais.TabIndex = 2;
             // 
+            // bsTypeFrais
+            // 
+            this.bsTypeFrais.CurrentChanged += new System.EventHandler(this.bsTypeFrais_CurrentChanged);
+            // 
             // txtbQte
             // 
             this.txtbQte.Location = new System.Drawing.Point(110, 140);
