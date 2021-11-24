@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Linq;
 
 namespace GSB_TAC
 {
@@ -31,7 +29,7 @@ namespace GSB_TAC
         public static List<Visiteur> listVisiteurs()
         {
             return maConnexion.Visiteur.ToList();
-        } 
+        }
 
         public static List<fichefrais> listFicheFraisVisiteur()
         {
@@ -67,28 +65,77 @@ namespace GSB_TAC
         }
 
 
-        public static List<LigneFraisForfait> listeLigneFrais()
+        public static List<LigneFraisForfait> listeLigneFrais(int type = 0)
         {
-            return maConnexion.LigneFraisForfait.Where(x =>x.mois == moisChoisi).ToList();
+            List<LigneFraisForfait> lretour = new List<LigneFraisForfait>();
+            switch (type)
+            {
+                case 1:
+                    lretour = maConnexion.LigneFraisForfait.Where(x => x.mois == moisChoisi)
+                                                           .Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
+                                                           .Where(x => !x.idFraisForfait.StartsWith("KM")).ToList();
+                    break;
+                case 2:
+                    lretour = maConnexion.LigneFraisForfait.Where(x => x.mois == moisChoisi)
+                                                           .Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
+                                                           .Where(x => x.idFraisForfait.StartsWith("KM")).ToList();
+                    break;
+                case 0:
+                    lretour = maConnexion.LigneFraisForfait.Where(x => x.mois == moisChoisi)
+                                                           .Where(x => x.idVisiteur == visiteurChoisi.idVisiteur).ToList();
+                    break;
+            }
+            return lretour;
         }
-
-
-
 
 
         public static List<FraisForfait> listeTypeFraisExistant()
         {
             List<FraisForfait> vretour = new List<FraisForfait>();
-           foreach(LigneFraisForfait frais in listeLigneFrais())
+            foreach (LigneFraisForfait frais in listeLigneFrais())
             {
-                foreach(FraisForfait typeFrais in listeTypeFrais())
+                foreach (FraisForfait typeFrais in listeTypeFrais())
                 {
-                    if(frais.idFraisForfait == typeFrais.id)
+                    if (frais.idFraisForfait == typeFrais.id)
                     {
                         vretour.Add(typeFrais);
                     }
                 }
             }
+            return vretour;
+        }
+
+        public static List<FraisForfait> listeTypeFraisNonExistant()
+        {
+            List<FraisForfait> vretour = new List<FraisForfait>();
+
+            Dictionary<string, bool> dictTypeFrais = new Dictionary<string, bool>();
+
+            List<FraisForfait> typesFrais = new List<FraisForfait>();
+
+            typesFrais = listeTypeFrais();
+
+            foreach (FraisForfait type in typesFrais)
+            {
+                dictTypeFrais.Add(type.id, false);
+                Debug.WriteLine(dictTypeFrais);
+            }
+
+            foreach (LigneFraisForfait frais in listeLigneFrais())
+            {
+                dictTypeFrais[frais.FraisForfait.id] = true;
+            }
+
+            foreach (KeyValuePair<string, bool> entry in dictTypeFrais)
+            {
+                if (entry.Value == false)
+                {
+                    Debug.WriteLine(entry.Value);
+                    vretour.Add(maConnexion.FraisForfait.Where(x => x.id == entry.Key).ToList()[0]);
+                }
+            }
+
+            
             return vretour;
         }
 
@@ -110,7 +157,8 @@ namespace GSB_TAC
                 lretour = maConnexion.LigneFraisHorsForfait.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
                                                            .Where(x => x.mois == moisChoisi)
                                                            .Where(x => x.id == id).ToList()[0];
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 lretour = null;
             }
@@ -134,7 +182,7 @@ namespace GSB_TAC
                 maConnexion.LigneFraisForfait.Add(fraisChoisi);
                 maConnexion.SaveChanges();
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
                 maConnexion.Dispose();
@@ -152,7 +200,8 @@ namespace GSB_TAC
             {
                 fraisChoisi.quantite = qte;
                 maConnexion.SaveChanges();
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
                 maConnexion.Dispose();
@@ -170,7 +219,8 @@ namespace GSB_TAC
                 maConnexion.LigneFraisForfait.Remove(FraisChoisi);
                 maConnexion.SaveChanges();
                 bretour = true;
-            }catch (Exception e)
+            }
+            catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
                 maConnexion.Dispose();
@@ -212,9 +262,10 @@ namespace GSB_TAC
                 maConnexion.SaveChanges();
                 vretour = true;
             }
-            catch(Exception e){
+            catch (Exception e)
+            {
 
-                }
+            }
 
 
             return vretour;

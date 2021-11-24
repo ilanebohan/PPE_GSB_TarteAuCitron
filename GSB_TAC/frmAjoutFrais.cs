@@ -23,7 +23,7 @@ namespace GSB_TAC
             lblInfoVisiteur.Text = string.Format("Visiteur : {0} {1}", Modele.VisiteurChoisi.nom, Modele.VisiteurChoisi.prenom);
             switch (Modele.ActionFrais)
             {
-                case 1: lblAction.Text = string.Format("Création d'une note de frais");btnValider.Text = "Ajouter";break;
+                case 1: lblAction.Text = string.Format("Création d'une note de frais");btnValider.Text = "Ajouter"; bsTypeFrais.DataSource = Modele.listeTypeFraisNonExistant(); break;
                 case 2: lblAction.Text = string.Format("Modification d'une note de frais");btnValider.Text = "Modifier";chbxHorsForfait.Visible=false; bsTypeFrais.DataSource = Modele.listeTypeFraisExistant(); break;
             }
 
