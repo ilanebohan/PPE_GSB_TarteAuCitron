@@ -29,7 +29,6 @@ namespace GSB_TAC
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -411,14 +410,5 @@ namespace GSB_TAC
         private System.Windows.Forms.ComboBox comboBox7;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox1;
-=======
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FrmRendezVous";
-        }
-
-        #endregion
->>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     }
 }

@@ -29,7 +29,6 @@ namespace GSB_TAC
         /// </summary>
         private void InitializeComponent()
         {
-<<<<<<< HEAD
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -205,14 +204,5 @@ namespace GSB_TAC
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label7;
-=======
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FrmModifMedecin";
-        }
-
-        #endregion
->>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     }
 }

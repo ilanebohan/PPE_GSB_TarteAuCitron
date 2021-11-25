@@ -16,13 +16,10 @@ namespace GSB_TAC
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
 
         private void FrmMedecin_Load(object sender, EventArgs e)
         {
 
         }
-=======
->>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     }
 }
