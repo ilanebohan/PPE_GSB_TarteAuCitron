@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="GSB_TACModel.fichefrais" Width="1.5" PointX="0.5" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="GSB_TACModel.FraisForfait" Width="1.5" PointX="3.375" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GSB_TACModel.Laboratoire" Width="1.5" PointX="8.125" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GSB_TACModel.LigneFraisForfait" Width="1.5" PointX="2.625" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GSB_TACModel.LigneFraisForfait" Width="1.5" PointX="2.875" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="GSB_TACModel.LigneFraisHorsForfait" Width="1.5" PointX="0.625" PointY="8.875" IsExpanded="true" />
         <EntityTypeShape EntityType="GSB_TACModel.MEDECIN" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="GSB_TACModel.MEDICAMENT" Width="1.5" PointX="12.375" PointY="12.75" IsExpanded="true" />
@@ -38,6 +38,7 @@
         <AssociationConnector Association="GSB_TACModel.FK_VISITEUR" ManuallyRouted="false" />
         <AssociationConnector Association="GSB_TACModel.FK_VISITEURSECTEUR" ManuallyRouted="false" />
         <AssociationConnector Association="GSB_TACModel.Travailler" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="GSB_TACModel.PRESENTER" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

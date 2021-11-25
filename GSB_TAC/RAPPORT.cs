@@ -26,6 +26,10 @@ namespace GSB_TAC
         public string bilan { get; set; }
         public string idVisiteur { get; set; }
         public int idMedecin { get; set; }
+        public Nullable<int> idMedecinRemp { get; set; }
+        public Nullable<System.DateTime> DateVisiteur { get; set; }
+        public Nullable<int> TauxAppreciation { get; set; }
+        public Nullable<int> MedecinRemplaçant { get; set; }
     
         public virtual MEDECIN MEDECIN { get; set; }
         public virtual MOTIF MOTIF { get; set; }

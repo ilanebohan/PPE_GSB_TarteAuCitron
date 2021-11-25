@@ -48,6 +48,22 @@ namespace GSB_TAC
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnSuppFraisKm = new System.Windows.Forms.Button();
             this.btnSuppFraisHf = new System.Windows.Forms.Button();
+            this.lblTotalFNrml = new System.Windows.Forms.Label();
+            this.lblFraisKm = new System.Windows.Forms.Label();
+            this.lblTotHFraiss = new System.Windows.Forms.Label();
+            this.lblTotGene = new System.Windows.Forms.Label();
+            this.txtBFNrml = new System.Windows.Forms.TextBox();
+            this.txtBTotalFKm = new System.Windows.Forms.TextBox();
+            this.txtBTotalHFrais = new System.Windows.Forms.TextBox();
+            this.txtBToGene = new System.Windows.Forms.TextBox();
+            this.lblChoixFNrml = new System.Windows.Forms.Label();
+            this.lblPrixUnitNrml = new System.Windows.Forms.Label();
+            this.lblMontantNrml = new System.Windows.Forms.Label();
+            this.lblLibeFraiKm = new System.Windows.Forms.Label();
+            this.lblMontantKM = new System.Windows.Forms.Label();
+            this.lblPrixUnitKm = new System.Windows.Forms.Label();
+            this.lblTypeFrais = new System.Windows.Forms.Label();
+            this.lblTypeFraisKm = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrais)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFraisHForfait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsVisiteur)).BeginInit();
@@ -97,7 +113,7 @@ namespace GSB_TAC
             this.dgvFraisHForfait.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFraisHForfait.Location = new System.Drawing.Point(675, 75);
             this.dgvFraisHForfait.Name = "dgvFraisHForfait";
-            this.dgvFraisHForfait.Size = new System.Drawing.Size(565, 460);
+            this.dgvFraisHForfait.Size = new System.Drawing.Size(565, 305);
             this.dgvFraisHForfait.TabIndex = 4;
             // 
             // btnAjoutFrais
@@ -124,6 +140,10 @@ namespace GSB_TAC
             // 
             this.bsFicheFrais.CurrentChanged += new System.EventHandler(this.bsFicheFrais_CurrentChanged);
             // 
+            // bsLigneFraisForfait
+            // 
+            this.bsLigneFraisForfait.CurrentChanged += new System.EventHandler(this.bsLigneFraisForfait_CurrentChanged);
+            // 
             // btnModifF
             // 
             this.btnModifF.Location = new System.Drawing.Point(580, 200);
@@ -141,6 +161,10 @@ namespace GSB_TAC
             this.dgvKm.Name = "dgvKm";
             this.dgvKm.Size = new System.Drawing.Size(565, 190);
             this.dgvKm.TabIndex = 11;
+            // 
+            // bsKm
+            // 
+            this.bsKm.CurrentChanged += new System.EventHandler(this.bsKm_CurrentChanged);
             // 
             // btnRefresh
             // 
@@ -165,7 +189,7 @@ namespace GSB_TAC
             // 
             // btnSuppFraisHf
             // 
-            this.btnSuppFraisHf.Location = new System.Drawing.Point(675, 540);
+            this.btnSuppFraisHf.Location = new System.Drawing.Point(675, 390);
             this.btnSuppFraisHf.Name = "btnSuppFraisHf";
             this.btnSuppFraisHf.Size = new System.Drawing.Size(120, 30);
             this.btnSuppFraisHf.TabIndex = 14;
@@ -173,11 +197,167 @@ namespace GSB_TAC
             this.btnSuppFraisHf.UseVisualStyleBackColor = true;
             this.btnSuppFraisHf.Click += new System.EventHandler(this.btnSuppFraisHf_Click);
             // 
+            // lblTotalFNrml
+            // 
+            this.lblTotalFNrml.AutoSize = true;
+            this.lblTotalFNrml.Location = new System.Drawing.Point(450, 275);
+            this.lblTotalFNrml.Name = "lblTotalFNrml";
+            this.lblTotalFNrml.Size = new System.Drawing.Size(37, 13);
+            this.lblTotalFNrml.TabIndex = 15;
+            this.lblTotalFNrml.Text = "Total :";
+            // 
+            // lblFraisKm
+            // 
+            this.lblFraisKm.AutoSize = true;
+            this.lblFraisKm.Location = new System.Drawing.Point(450, 545);
+            this.lblFraisKm.Name = "lblFraisKm";
+            this.lblFraisKm.Size = new System.Drawing.Size(37, 13);
+            this.lblFraisKm.TabIndex = 16;
+            this.lblFraisKm.Text = "Total :";
+            // 
+            // lblTotHFraiss
+            // 
+            this.lblTotHFraiss.AutoSize = true;
+            this.lblTotHFraiss.Location = new System.Drawing.Point(1120, 390);
+            this.lblTotHFraiss.Name = "lblTotHFraiss";
+            this.lblTotHFraiss.Size = new System.Drawing.Size(37, 13);
+            this.lblTotHFraiss.TabIndex = 17;
+            this.lblTotHFraiss.Text = "Total :";
+            // 
+            // lblTotGene
+            // 
+            this.lblTotGene.AutoSize = true;
+            this.lblTotGene.Location = new System.Drawing.Point(675, 520);
+            this.lblTotGene.Name = "lblTotGene";
+            this.lblTotGene.Size = new System.Drawing.Size(75, 13);
+            this.lblTotGene.TabIndex = 18;
+            this.lblTotGene.Text = "Total général :";
+            // 
+            // txtBFNrml
+            // 
+            this.txtBFNrml.Location = new System.Drawing.Point(490, 270);
+            this.txtBFNrml.Name = "txtBFNrml";
+            this.txtBFNrml.ReadOnly = true;
+            this.txtBFNrml.Size = new System.Drawing.Size(85, 20);
+            this.txtBFNrml.TabIndex = 19;
+            // 
+            // txtBTotalFKm
+            // 
+            this.txtBTotalFKm.Location = new System.Drawing.Point(490, 540);
+            this.txtBTotalFKm.Name = "txtBTotalFKm";
+            this.txtBTotalFKm.ReadOnly = true;
+            this.txtBTotalFKm.Size = new System.Drawing.Size(85, 20);
+            this.txtBTotalFKm.TabIndex = 20;
+            // 
+            // txtBTotalHFrais
+            // 
+            this.txtBTotalHFrais.Location = new System.Drawing.Point(1155, 385);
+            this.txtBTotalHFrais.Name = "txtBTotalHFrais";
+            this.txtBTotalHFrais.ReadOnly = true;
+            this.txtBTotalHFrais.Size = new System.Drawing.Size(85, 20);
+            this.txtBTotalHFrais.TabIndex = 21;
+            // 
+            // txtBToGene
+            // 
+            this.txtBToGene.Location = new System.Drawing.Point(750, 515);
+            this.txtBToGene.Name = "txtBToGene";
+            this.txtBToGene.ReadOnly = true;
+            this.txtBToGene.Size = new System.Drawing.Size(85, 20);
+            this.txtBToGene.TabIndex = 22;
+            // 
+            // lblChoixFNrml
+            // 
+            this.lblChoixFNrml.AutoSize = true;
+            this.lblChoixFNrml.Location = new System.Drawing.Point(240, 275);
+            this.lblChoixFNrml.Name = "lblChoixFNrml";
+            this.lblChoixFNrml.Size = new System.Drawing.Size(89, 13);
+            this.lblChoixFNrml.TabIndex = 23;
+            this.lblChoixFNrml.Text = "Frais Kilometrique";
+            // 
+            // lblPrixUnitNrml
+            // 
+            this.lblPrixUnitNrml.AutoSize = true;
+            this.lblPrixUnitNrml.Location = new System.Drawing.Point(335, 275);
+            this.lblPrixUnitNrml.Name = "lblPrixUnitNrml";
+            this.lblPrixUnitNrml.Size = new System.Drawing.Size(67, 13);
+            this.lblPrixUnitNrml.TabIndex = 24;
+            this.lblPrixUnitNrml.Text = "Prix unitaire :";
+            // 
+            // lblMontantNrml
+            // 
+            this.lblMontantNrml.AutoSize = true;
+            this.lblMontantNrml.Location = new System.Drawing.Point(410, 275);
+            this.lblMontantNrml.Name = "lblMontantNrml";
+            this.lblMontantNrml.Size = new System.Drawing.Size(23, 13);
+            this.lblMontantNrml.TabIndex = 25;
+            this.lblMontantNrml.Text = "null";
+            // 
+            // lblLibeFraiKm
+            // 
+            this.lblLibeFraiKm.AutoSize = true;
+            this.lblLibeFraiKm.Location = new System.Drawing.Point(240, 545);
+            this.lblLibeFraiKm.Name = "lblLibeFraiKm";
+            this.lblLibeFraiKm.Size = new System.Drawing.Size(89, 13);
+            this.lblLibeFraiKm.TabIndex = 26;
+            this.lblLibeFraiKm.Text = "Frais Kilometrique";
+            // 
+            // lblMontantKM
+            // 
+            this.lblMontantKM.AutoSize = true;
+            this.lblMontantKM.Location = new System.Drawing.Point(410, 545);
+            this.lblMontantKM.Name = "lblMontantKM";
+            this.lblMontantKM.Size = new System.Drawing.Size(23, 13);
+            this.lblMontantKM.TabIndex = 28;
+            this.lblMontantKM.Text = "null";
+            // 
+            // lblPrixUnitKm
+            // 
+            this.lblPrixUnitKm.AutoSize = true;
+            this.lblPrixUnitKm.Location = new System.Drawing.Point(335, 545);
+            this.lblPrixUnitKm.Name = "lblPrixUnitKm";
+            this.lblPrixUnitKm.Size = new System.Drawing.Size(67, 13);
+            this.lblPrixUnitKm.TabIndex = 27;
+            this.lblPrixUnitKm.Text = "Prix unitaire :";
+            // 
+            // lblTypeFrais
+            // 
+            this.lblTypeFrais.AutoSize = true;
+            this.lblTypeFrais.Location = new System.Drawing.Point(165, 275);
+            this.lblTypeFrais.Name = "lblTypeFrais";
+            this.lblTypeFrais.Size = new System.Drawing.Size(77, 13);
+            this.lblTypeFrais.TabIndex = 29;
+            this.lblTypeFrais.Text = "Type de Frais :";
+            // 
+            // lblTypeFraisKm
+            // 
+            this.lblTypeFraisKm.AutoSize = true;
+            this.lblTypeFraisKm.Location = new System.Drawing.Point(165, 545);
+            this.lblTypeFraisKm.Name = "lblTypeFraisKm";
+            this.lblTypeFraisKm.Size = new System.Drawing.Size(77, 13);
+            this.lblTypeFraisKm.TabIndex = 30;
+            this.lblTypeFraisKm.Text = "Type de Frais :";
+            // 
             // frmRemboursement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 621);
+            this.Controls.Add(this.lblTypeFraisKm);
+            this.Controls.Add(this.lblTypeFrais);
+            this.Controls.Add(this.lblMontantKM);
+            this.Controls.Add(this.lblPrixUnitKm);
+            this.Controls.Add(this.lblLibeFraiKm);
+            this.Controls.Add(this.lblMontantNrml);
+            this.Controls.Add(this.lblPrixUnitNrml);
+            this.Controls.Add(this.lblChoixFNrml);
+            this.Controls.Add(this.txtBToGene);
+            this.Controls.Add(this.txtBTotalHFrais);
+            this.Controls.Add(this.txtBTotalFKm);
+            this.Controls.Add(this.txtBFNrml);
+            this.Controls.Add(this.lblTotGene);
+            this.Controls.Add(this.lblTotHFraiss);
+            this.Controls.Add(this.lblFraisKm);
+            this.Controls.Add(this.lblTotalFNrml);
             this.Controls.Add(this.btnSuppFraisHf);
             this.Controls.Add(this.btnSuppFraisKm);
             this.Controls.Add(this.btnRefresh);
@@ -224,5 +404,21 @@ namespace GSB_TAC
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnSuppFraisKm;
         private System.Windows.Forms.Button btnSuppFraisHf;
+        private System.Windows.Forms.Label lblTotalFNrml;
+        private System.Windows.Forms.Label lblFraisKm;
+        private System.Windows.Forms.Label lblTotHFraiss;
+        private System.Windows.Forms.Label lblTotGene;
+        private System.Windows.Forms.TextBox txtBFNrml;
+        private System.Windows.Forms.TextBox txtBTotalFKm;
+        private System.Windows.Forms.TextBox txtBTotalHFrais;
+        private System.Windows.Forms.TextBox txtBToGene;
+        private System.Windows.Forms.Label lblChoixFNrml;
+        private System.Windows.Forms.Label lblPrixUnitNrml;
+        private System.Windows.Forms.Label lblMontantNrml;
+        private System.Windows.Forms.Label lblLibeFraiKm;
+        private System.Windows.Forms.Label lblMontantKM;
+        private System.Windows.Forms.Label lblPrixUnitKm;
+        private System.Windows.Forms.Label lblTypeFrais;
+        private System.Windows.Forms.Label lblTypeFraisKm;
     }
 }

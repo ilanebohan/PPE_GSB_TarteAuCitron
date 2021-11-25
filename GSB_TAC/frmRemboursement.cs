@@ -32,7 +32,15 @@ namespace GSB_TAC
         private void bsFicheFrais_CurrentChanged(object sender, EventArgs e)
         {
             Modele.MoisChoisi = ((fichefrais)bsFicheFrais.Current).mois;
+
             bsLigneFraisForfait.DataSource = Modele.listeLigneFrais(1);
+
+            decimal totNrml = 0;
+            foreach (LigneFraisForfait frais in bsLigneFraisForfait)
+            {
+                totNrml += (decimal)(frais.quantite * frais.FraisForfait.montant);
+            }
+
             dgvFrais.DataSource = bsLigneFraisForfait;
             try
             {
@@ -40,13 +48,21 @@ namespace GSB_TAC
                 dgvFrais.Columns[1].Visible = false;
                 dgvFrais.Columns[4].Visible = false;
                 dgvFrais.Columns[5].Visible = false;
-                dgvFrais.Columns[2].HeaderText = "Code de Frais";
-                dgvFrais.Columns[3].HeaderText = "Type de Frais";
+                dgvFrais.Columns[0].HeaderText = "Type de frais";
+                dgvFrais.Columns[1].HeaderText = "Quantité";
             }
             catch { }
-            bsKm.DataSource = Modele.listeLigneFrais(2);
+            txtBFNrml.Text = Convert.ToString(totNrml);
 
+            bsKm.DataSource = Modele.listeLigneFrais(2);
             dgvKm.DataSource = bsKm;
+
+            decimal totFKm = 0;
+            foreach (LigneFraisForfait frais in bsKm)
+            {
+                totFKm += (decimal)(frais.quantite * frais.FraisForfait.montant);
+            }
+
             try
             {
                 dgvKm.Columns[0].Visible = false;
@@ -58,8 +74,18 @@ namespace GSB_TAC
             }
             catch { }
 
+            txtBTotalFKm.Text = Convert.ToString(totFKm);
+
+
             bsLigneFraisHForfait.DataSource = Modele.listeFraisHForfait();
             dgvFraisHForfait.DataSource = bsLigneFraisHForfait;
+
+            decimal totHFrais = 0;
+            foreach (LigneFraisHorsForfait frais in bsLigneFraisHForfait)
+            {
+                totHFrais += (decimal)(frais.montant);
+            }
+
 
             try
             {
@@ -68,6 +94,10 @@ namespace GSB_TAC
                 dgvFraisHForfait.Columns[6].Visible = false;
             }
             catch { }
+
+            txtBTotalHFrais.Text = Convert.ToString(totHFrais);
+
+            txtBToGene.Text = Convert.ToString(totNrml + totFKm + totHFrais);
 
 
         }
@@ -94,7 +124,7 @@ namespace GSB_TAC
                 string idFrais = (string)type.GetProperty("idFraisForfait").GetValue(bsLigneFraisForfait.Current, null);
                 string mois = (string)type.GetProperty("mois").GetValue(bsLigneFraisForfait.Current, null);
 
-                Modele.FraisChoisi = Modele.donneFrais(idVisi, mois, idFrais);
+                Modele.FraisChoisi = Modele.donneFrais(idFrais);
 
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 string message = string.Format("Voulez vous vraiment supprimer cet ligne ?");
@@ -142,7 +172,7 @@ namespace GSB_TAC
                 string idFrais = (string)type.GetProperty("idFraisForfait").GetValue(bsKm.Current, null);
                 string mois = (string)type.GetProperty("mois").GetValue(bsKm.Current, null);
 
-                Modele.FraisChoisi = Modele.donneFrais(idVisi, mois, idFrais);
+                Modele.FraisChoisi = Modele.donneFrais(idFrais);
 
                 MessageBoxButtons buttons = MessageBoxButtons.YesNo;
                 string message = string.Format("Voulez vous vraiment supprimer cet ligne ?");
@@ -190,6 +220,20 @@ namespace GSB_TAC
                MessageBox.Show(msg, "Erreur", button);
                
             }
+        }
+
+        private void bsLigneFraisForfait_CurrentChanged(object sender, EventArgs e)
+        {
+
+                lblChoixFNrml.Text = Modele.donneTypeFrais(((LigneFraisForfait)bsLigneFraisForfait.Current).idFraisForfait).libelle;
+                lblMontantNrml.Text = Convert.ToString(Modele.donneTypeFrais(((LigneFraisForfait)bsLigneFraisForfait.Current).idFraisForfait).montant);
+
+        }
+
+        private void bsKm_CurrentChanged(object sender, EventArgs e)
+        {
+            lblLibeFraiKm.Text = Modele.donneTypeFrais(((LigneFraisForfait)bsKm.Current).idFraisForfait).libelle;
+            lblMontantKM.Text = Convert.ToString(Modele.donneTypeFrais(((LigneFraisForfait)bsKm.Current).idFraisForfait).montant);
         }
     }
 }

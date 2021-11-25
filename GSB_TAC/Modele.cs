@@ -42,22 +42,38 @@ namespace GSB_TAC
                                                 .Where(x => x.mois == mois).ToList();
         }
 
-        public static LigneFraisForfait donneFrais(string idVisi, string mois, string idForf)
+        public static LigneFraisForfait donneFrais(string idForf)
         {
             LigneFraisForfait fretour;
             try
             {
-                fretour = maConnexion.LigneFraisForfait.Where(x => x.idVisiteur == idVisi)
-                                                       .Where(x => x.mois == mois)
+                fretour = maConnexion.LigneFraisForfait.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
+                                                       .Where(x => x.mois == moisChoisi)
                                                        .Where(x => x.idFraisForfait == idForf).ToList()[0];
             }
             catch
             {
                 fretour = null;
+                Debug.WriteLine("Null");
             }
             return fretour;
         }
 
+        public static FraisForfait donneTypeFrais(string id)
+        {
+            FraisForfait tfretour;
+            try
+            {
+                tfretour = maConnexion.FraisForfait.Where(x => x.id == id).ToList()[0];
+            }
+            catch
+            {
+                FraisForfait t = new FraisForfait();
+                tfretour = t;
+            }
+
+            return tfretour;
+        }
 
         public static List<FraisForfait> listeTypeFrais()
         {
@@ -65,7 +81,7 @@ namespace GSB_TAC
         }
 
 
-        public static List<LigneFraisForfait> listeLigneFrais(int type = 0)
+        public static List<LigneFraisForfait> listeLigneFrais(int type = 0) //0 = tous les frais; 1 = Frais sans KM; 2 = frais KM
         {
             List<LigneFraisForfait> lretour = new List<LigneFraisForfait>();
             switch (type)
@@ -88,6 +104,7 @@ namespace GSB_TAC
             return lretour;
         }
 
+        
 
         public static List<FraisForfait> listeTypeFraisExistant()
         {
@@ -192,20 +209,48 @@ namespace GSB_TAC
             return vretour;
         }
 
-        public static bool modifFrais(int qte)
+        public static bool modifFrais(int qte, LigneFraisForfait fraisForfait)
         {
             bool vretour = false;
 
             try
             {
-                fraisChoisi.quantite = qte;
-                maConnexion.SaveChanges();
+ 
+                    fraisForfait.quantite = qte;
+                    maConnexion.SaveChanges();
+                    vretour = true;
+               
+            }catch(Exception e)
+            {
+                System.Windows.Forms.MessageBox.Show(e.Message);
+                maConnexion.Dispose();
+                vretour = false;
+                init();
+                
+            }
+
+            return vretour;
+        }
+
+        public static bool modifHFrais(int qte, DateTime date, string libelle, LigneFraisHorsForfait fraisHorsForfait)
+        {
+            bool vretour = false;
+
+            try
+            {
+                    fraisHorsForfait.montant = qte;
+                    fraisHorsForfait.date = date;
+                    fraisHorsForfait.libelle = libelle;
+                    maConnexion.SaveChanges();
+                    vretour = true;
             }
             catch (Exception e)
             {
                 System.Windows.Forms.MessageBox.Show(e.Message);
                 maConnexion.Dispose();
+                vretour = false;
                 init();
+
             }
 
             return vretour;
