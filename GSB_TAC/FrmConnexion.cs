@@ -16,6 +16,7 @@ namespace GSB_TAC
         {
             InitializeComponent();
         }
+<<<<<<< HEAD
 
         private void button3_Click(object sender, EventArgs e)
         {
@@ -43,5 +44,7 @@ namespace GSB_TAC
         {
 
         }
+=======
+>>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     }
 }

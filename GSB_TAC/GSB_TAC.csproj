@@ -91,6 +91,7 @@
     <Compile Include="FraisForfait.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="FrmConnexion.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +103,19 @@
     </Compile>
     <Compile Include="FrmInfoMedicament.Designer.cs">
       <DependentUpon>FrmInfoMedicament.cs</DependentUpon>
+=======
+    <Compile Include="FrmCompteRendu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCompteRendu.Designer.cs">
+      <DependentUpon>FrmCompteRendu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmConnexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConnexion.Designer.cs">
+      <DependentUpon>FrmConnexion.cs</DependentUpon>
+>>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     </Compile>
     <Compile Include="FrmListeRapport.cs">
       <SubType>Form</SubType>
@@ -121,6 +135,7 @@
     <Compile Include="FrmModifMedecin.Designer.cs">
       <DependentUpon>FrmModifMedecin.cs</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="FrmModifRapport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +148,8 @@
     <Compile Include="FrmRecapRapport.Designer.cs">
       <DependentUpon>FrmRecapRapport.cs</DependentUpon>
     </Compile>
+=======
+>>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     <Compile Include="FrmRendezVous.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -205,6 +222,7 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
+<<<<<<< HEAD
     <EmbeddedResource Include="FrmConnexion.resx">
       <DependentUpon>FrmConnexion.cs</DependentUpon>
     </EmbeddedResource>
@@ -229,6 +247,8 @@
     <EmbeddedResource Include="FrmRendezVous.resx">
       <DependentUpon>FrmRendezVous.cs</DependentUpon>
     </EmbeddedResource>
+=======
+>>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     <EmbeddedResource Include="FrmVisiteur.resx">
       <DependentUpon>FrmVisiteur.cs</DependentUpon>
     </EmbeddedResource>

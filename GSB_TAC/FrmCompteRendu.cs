@@ -10,19 +10,11 @@ using System.Windows.Forms;
 
 namespace GSB_TAC
 {
-    public partial class FrmMedecin : Form
+    public partial class FrmCompteRendu : Form
     {
-        public FrmMedecin()
+        public FrmCompteRendu()
         {
             InitializeComponent();
         }
-<<<<<<< HEAD
-
-        private void FrmMedecin_Load(object sender, EventArgs e)
-        {
-
-        }
-=======
->>>>>>> adb00684108a0e69b9dfb1041001cd3fd32596da
     }
 }
