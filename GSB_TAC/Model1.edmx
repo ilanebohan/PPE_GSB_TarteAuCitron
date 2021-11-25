@@ -126,6 +126,10 @@
           <Property Name="bilan" Type="varchar" MaxLength="64" />
           <Property Name="idVisiteur" Type="char" MaxLength="3" Nullable="false" />
           <Property Name="idMedecin" Type="int" Nullable="false" />
+          <Property Name="idMedecinRemp" Type="int" />
+          <Property Name="DateVisiteur" Type="date" />
+          <Property Name="TauxAppreciation" Type="int" />
+          <Property Name="MedecinRemplaçant" Type="int" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -627,6 +631,10 @@
           <NavigationProperty Name="MOTIF" Relationship="Self.rapport_fk3" FromRole="RAPPORT" ToRole="MOTIF" />
           <NavigationProperty Name="OFFRIR" Relationship="Self.offrir_fk1" FromRole="RAPPORT" ToRole="OFFRIR" />
           <NavigationProperty Name="Visiteur" Relationship="Self.rapport_fk1" FromRole="RAPPORT" ToRole="Visiteur" />
+          <Property Name="idMedecinRemp" Type="Int32" />
+          <Property Name="DateVisiteur" Type="DateTime" Precision="0" />
+          <Property Name="TauxAppreciation" Type="Int32" />
+          <Property Name="MedecinRemplaçant" Type="Int32" />
         </EntityType>
         <EntityType Name="Region">
           <Key>
@@ -1096,6 +1104,10 @@
           <EntitySetMapping Name="RAPPORT">
             <EntityTypeMapping TypeName="GSB_TACModel.RAPPORT">
               <MappingFragment StoreEntitySet="RAPPORT">
+                <ScalarProperty Name="MedecinRemplaçant" ColumnName="MedecinRemplaçant" />
+                <ScalarProperty Name="TauxAppreciation" ColumnName="TauxAppreciation" />
+                <ScalarProperty Name="DateVisiteur" ColumnName="DateVisiteur" />
+                <ScalarProperty Name="idMedecinRemp" ColumnName="idMedecinRemp" />
                 <ScalarProperty Name="idRapport" ColumnName="idRapport" />
                 <ScalarProperty Name="dateRapport" ColumnName="dateRapport" />
                 <ScalarProperty Name="idMotif" ColumnName="idMotif" />

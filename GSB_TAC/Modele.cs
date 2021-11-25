@@ -101,7 +101,7 @@ namespace GSB_TAC
                 * Méthodes de connexion
                   --------------------------------------------*/
 
-        public static bool userexists(string id)
+        public static bool userexists(string id) // vérifie existence utilisateur
         {
             bool vretour = false;
 
@@ -115,7 +115,7 @@ namespace GSB_TAC
             return vretour;
         }
 
-        public static bool passexists(string mdp)
+        public static bool passexists(string mdp) // vérifie existence du mot de passe lié à l'UtilisateurChoisi
         {
             bool vretour = false;
             if (UtilisateurConnecte.password.Equals(GetMd5Hash(mdp)) && UtilisateurConnecte.actif == true)
@@ -252,7 +252,7 @@ namespace GSB_TAC
             return vretour;
         }
 
-        public static bool LicencierVisiteur(string motif, string date)
+        public static bool LicencierVisiteur(string motif, string date) // Récupère le motif & la date de licenciement du Visiteur et actif=false
         {
             bool vretour = false;
 
@@ -272,7 +272,7 @@ namespace GSB_TAC
         * Méthodes pour modifier un objet Region
           --------------------------------------------*/
 
-        public static bool ModifRegion(string nom, string idvisiteur)
+        public static bool ModifRegion(string nom, string idvisiteur) // Récupère un nom de région & un idVisiteur pour le passer Chef de région
         {
             bool vretour = false;
 
@@ -316,7 +316,7 @@ namespace GSB_TAC
         }
 
 
-        public static bool DissocierRegion(Region region)
+        public static bool DissocierRegion(Region region) // Dissocie le visiteur choisi de la région passée en paramètres
         {
             bool vretour = true;
 
@@ -338,7 +338,7 @@ namespace GSB_TAC
         /* --------------------------------------------
         * Méthodes pour modifier un objet Secteur
           --------------------------------------------*/
-        public static bool ModifSecteur(string nom, string idvisiteur)
+        public static bool ModifSecteur(string nom, string idvisiteur) // Modifie le secteurChoisi pour lui attribuer l'idVisiteur envoyé pour le passer Chef de Secteur
         {
             bool vretour = true;
             try

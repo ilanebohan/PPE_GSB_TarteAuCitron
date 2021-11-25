@@ -77,7 +77,7 @@ namespace GSB_TAC
             this.dgvRegion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegion.Location = new System.Drawing.Point(12, 154);
             this.dgvRegion.Name = "dgvRegion";
-            this.dgvRegion.Size = new System.Drawing.Size(316, 234);
+            this.dgvRegion.Size = new System.Drawing.Size(310, 234);
             this.dgvRegion.TabIndex = 6;
             // 
             // lblRespregion

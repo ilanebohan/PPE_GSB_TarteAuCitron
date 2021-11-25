@@ -56,7 +56,7 @@ namespace GSB_TAC
             // lblIdentifiant
             // 
             this.lblIdentifiant.AutoSize = true;
-            this.lblIdentifiant.Location = new System.Drawing.Point(12, 53);
+            this.lblIdentifiant.Location = new System.Drawing.Point(104, 83);
             this.lblIdentifiant.Name = "lblIdentifiant";
             this.lblIdentifiant.Size = new System.Drawing.Size(62, 13);
             this.lblIdentifiant.TabIndex = 1;
@@ -65,7 +65,7 @@ namespace GSB_TAC
             // lblMDP
             // 
             this.lblMDP.AutoSize = true;
-            this.lblMDP.Location = new System.Drawing.Point(12, 167);
+            this.lblMDP.Location = new System.Drawing.Point(104, 156);
             this.lblMDP.Name = "lblMDP";
             this.lblMDP.Size = new System.Drawing.Size(77, 13);
             this.lblMDP.TabIndex = 2;
@@ -73,14 +73,14 @@ namespace GSB_TAC
             // 
             // txtIdentifiant
             // 
-            this.txtIdentifiant.Location = new System.Drawing.Point(140, 53);
+            this.txtIdentifiant.Location = new System.Drawing.Point(229, 76);
             this.txtIdentifiant.Name = "txtIdentifiant";
             this.txtIdentifiant.Size = new System.Drawing.Size(100, 20);
             this.txtIdentifiant.TabIndex = 3;
             // 
             // txtMDP
             // 
-            this.txtMDP.Location = new System.Drawing.Point(140, 167);
+            this.txtMDP.Location = new System.Drawing.Point(229, 149);
             this.txtMDP.Name = "txtMDP";
             this.txtMDP.Size = new System.Drawing.Size(100, 20);
             this.txtMDP.TabIndex = 4;
@@ -97,7 +97,7 @@ namespace GSB_TAC
             // 
             // txtAncienmdp
             // 
-            this.txtAncienmdp.Location = new System.Drawing.Point(421, 53);
+            this.txtAncienmdp.Location = new System.Drawing.Point(158, 210);
             this.txtAncienmdp.Name = "txtAncienmdp";
             this.txtAncienmdp.Size = new System.Drawing.Size(100, 20);
             this.txtAncienmdp.TabIndex = 6;
@@ -105,7 +105,7 @@ namespace GSB_TAC
             // 
             // txtNouveaumdp
             // 
-            this.txtNouveaumdp.Location = new System.Drawing.Point(421, 164);
+            this.txtNouveaumdp.Location = new System.Drawing.Point(431, 210);
             this.txtNouveaumdp.Name = "txtNouveaumdp";
             this.txtNouveaumdp.Size = new System.Drawing.Size(100, 20);
             this.txtNouveaumdp.TabIndex = 7;
@@ -114,7 +114,7 @@ namespace GSB_TAC
             // lblAncienmdp
             // 
             this.lblAncienmdp.AutoSize = true;
-            this.lblAncienmdp.Location = new System.Drawing.Point(303, 56);
+            this.lblAncienmdp.Location = new System.Drawing.Point(12, 213);
             this.lblAncienmdp.Name = "lblAncienmdp";
             this.lblAncienmdp.Size = new System.Drawing.Size(112, 13);
             this.lblAncienmdp.TabIndex = 8;
@@ -124,7 +124,7 @@ namespace GSB_TAC
             // lblNouveaumdp
             // 
             this.lblNouveaumdp.AutoSize = true;
-            this.lblNouveaumdp.Location = new System.Drawing.Point(292, 170);
+            this.lblNouveaumdp.Location = new System.Drawing.Point(282, 213);
             this.lblNouveaumdp.Name = "lblNouveaumdp";
             this.lblNouveaumdp.Size = new System.Drawing.Size(123, 13);
             this.lblNouveaumdp.TabIndex = 9;
@@ -133,7 +133,7 @@ namespace GSB_TAC
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(434, 208);
+            this.btnOK.Location = new System.Drawing.Point(456, 260);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 10;
