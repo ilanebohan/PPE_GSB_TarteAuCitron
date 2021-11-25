@@ -32,5 +32,22 @@ namespace GSB_TAC
         {
 
         }
+
+        private void btnFermer_Click(object sender, EventArgs e)
+        { 
+            if(MessageBox.Show("Quitter l'application?", "", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+            {
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

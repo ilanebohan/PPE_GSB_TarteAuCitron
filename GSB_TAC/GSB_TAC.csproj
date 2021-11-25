@@ -91,6 +91,60 @@
     <Compile Include="FraisForfait.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
+    <Compile Include="FrmConnexion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConnexion.Designer.cs">
+      <DependentUpon>FrmConnexion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmInfoMedicament.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmInfoMedicament.Designer.cs">
+      <DependentUpon>FrmInfoMedicament.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmListeRapport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmListeRapport.Designer.cs">
+      <DependentUpon>FrmListeRapport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMedecin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMedecin.Designer.cs">
+      <DependentUpon>FrmMedecin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModifMedecin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModifMedecin.Designer.cs">
+      <DependentUpon>FrmModifMedecin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmModifRapport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmModifRapport.Designer.cs">
+      <DependentUpon>FrmModifRapport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRecapRapport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRecapRapport.Designer.cs">
+      <DependentUpon>FrmRecapRapport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRendezVous.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRendezVous.Designer.cs">
+      <DependentUpon>FrmRendezVous.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVisiteur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVisiteur.Designer.cs">
+      <DependentUpon>FrmVisiteur.cs</DependentUpon>
+    </Compile>
     <Compile Include="Laboratoire.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -150,6 +204,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmConnexion.resx">
+      <DependentUpon>FrmConnexion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmInfoMedicament.resx">
+      <DependentUpon>FrmInfoMedicament.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmListeRapport.resx">
+      <DependentUpon>FrmListeRapport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMedecin.resx">
+      <DependentUpon>FrmMedecin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModifMedecin.resx">
+      <DependentUpon>FrmModifMedecin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmModifRapport.resx">
+      <DependentUpon>FrmModifRapport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRecapRapport.resx">
+      <DependentUpon>FrmRecapRapport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRendezVous.resx">
+      <DependentUpon>FrmRendezVous.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVisiteur.resx">
+      <DependentUpon>FrmVisiteur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

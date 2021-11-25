@@ -17,7 +17,7 @@ namespace GSB_TAC
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Modele2.init();
-            Application.Run(new Form1());
+            Application.Run(new FrmConnexion());
         }
     }
 }
