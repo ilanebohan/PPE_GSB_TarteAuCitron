@@ -203,7 +203,7 @@ namespace GSB_TAC
             this.dgvRegions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRegions.Location = new System.Drawing.Point(514, 94);
             this.dgvRegions.Name = "dgvRegions";
-            this.dgvRegions.Size = new System.Drawing.Size(246, 106);
+            this.dgvRegions.Size = new System.Drawing.Size(246, 183);
             this.dgvRegions.TabIndex = 11;
             this.dgvRegions.Visible = false;
             // 
@@ -221,7 +221,8 @@ namespace GSB_TAC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(772, 230);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.ClientSize = new System.Drawing.Size(772, 369);
             this.Controls.Add(this.btnDeco);
             this.Controls.Add(this.dgvRegions);
             this.Controls.Add(this.lblRegion);

@@ -52,7 +52,7 @@ namespace GSB_TAC
             this.dgvVisiteur.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVisiteur.Location = new System.Drawing.Point(457, 154);
             this.dgvVisiteur.Name = "dgvVisiteur";
-            this.dgvVisiteur.Size = new System.Drawing.Size(316, 234);
+            this.dgvVisiteur.Size = new System.Drawing.Size(443, 234);
             this.dgvVisiteur.TabIndex = 0;
             // 
             // lblRespsecteur
@@ -111,7 +111,7 @@ namespace GSB_TAC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(941, 454);
             this.Controls.Add(this.lblPasdevisiteur);
             this.Controls.Add(this.lblRespregion);
             this.Controls.Add(this.dgvRegion);
