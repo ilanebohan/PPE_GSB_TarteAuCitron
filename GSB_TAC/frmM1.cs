@@ -44,6 +44,16 @@ namespace GSB_TAC
                 dgvRegions.Columns[5].Visible = false;
 
             }
+            if (Modele.UtilisateurConnecte.identifiant == "admin")
+            {
+                gestionRégionsToolStripMenuItem.Visible = true;
+                lblRegion.Visible = true;
+                lblRegion.Text = "Régions gérées : ";
+                dgvRegions.Visible = true;
+                lblSecteur.Visible = true;
+                gestionSecteursToolStripMenuItem.Visible = true;
+
+            }
 
             /* if (Modele.isResponsablelabo(Modele.UtilisateurConnecte.idVisiteur))
              {
@@ -93,7 +103,15 @@ namespace GSB_TAC
 
         private void btnChangementinfos_Click(object sender, EventArgs e)
         {
-            Modele.ModifUtilisateur(txtNouveaunom.Text, txtNouveauprenom.Text);
+            if (Modele.ModifUtilisateur(txtNouveaunom.Text, txtNouveauprenom.Text))
+            {
+                MessageBox.Show("Modification réussie !");
+            }
+            else if (!Modele.ModifUtilisateur(txtNouveaunom.Text, txtNouveauprenom.Text))
+            {
+                MessageBox.Show("Modification impossible !");
+            }
+            frmM1_Load(new Object() , new EventArgs());
         }
 
         private void gestionLaboGSBToolStripMenuItem_Click(object sender, EventArgs e)

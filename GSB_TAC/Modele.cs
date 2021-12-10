@@ -159,6 +159,8 @@ namespace GSB_TAC
         }
         
 
+
+        // Ajoute un visiteur dans la BDD => Actif par défaut.
         public static bool AjoutVisiteur(string idVisiteur, string nom, string prenom, string rue, string codepostal, string ville, string dateEmbauche, string identifiant, string password, Laboratoire labo, Region region)
         {
             bool vretour = true;
@@ -204,6 +206,8 @@ namespace GSB_TAC
             return vretour;
 
         }
+
+        //Modification des informations nominales du Visiteur.
         public static bool ModifUtilisateur(string nom, string prenom)
         {
             bool vretour = true;
