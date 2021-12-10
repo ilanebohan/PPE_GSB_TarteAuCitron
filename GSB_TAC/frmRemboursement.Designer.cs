@@ -64,6 +64,8 @@ namespace GSB_TAC
             this.lblPrixUnitKm = new System.Windows.Forms.Label();
             this.lblTypeFrais = new System.Windows.Forms.Label();
             this.lblTypeFraisKm = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.txtBStatus = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFrais)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFraisHForfait)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bsVisiteur)).BeginInit();
@@ -120,9 +122,9 @@ namespace GSB_TAC
             // 
             this.btnAjoutFrais.Location = new System.Drawing.Point(580, 160);
             this.btnAjoutFrais.Name = "btnAjoutFrais";
-            this.btnAjoutFrais.Size = new System.Drawing.Size(30, 30);
+            this.btnAjoutFrais.Size = new System.Drawing.Size(90, 30);
             this.btnAjoutFrais.TabIndex = 5;
-            this.btnAjoutFrais.Text = "+";
+            this.btnAjoutFrais.Text = "Ajouter";
             this.btnAjoutFrais.UseVisualStyleBackColor = true;
             this.btnAjoutFrais.Click += new System.EventHandler(this.btnAjoutFrais_Click);
             // 
@@ -148,11 +150,11 @@ namespace GSB_TAC
             // 
             this.btnModifF.Location = new System.Drawing.Point(580, 200);
             this.btnModifF.Name = "btnModifF";
-            this.btnModifF.Size = new System.Drawing.Size(30, 30);
+            this.btnModifF.Size = new System.Drawing.Size(90, 30);
             this.btnModifF.TabIndex = 9;
-            this.btnModifF.Text = "M";
+            this.btnModifF.Text = "Modifier";
             this.btnModifF.UseVisualStyleBackColor = true;
-            this.btnModifF.Click += new System.EventHandler(this.button1_Click);
+            this.btnModifF.Click += new System.EventHandler(this.btnModifF_Click);
             // 
             // dgvKm
             // 
@@ -270,9 +272,9 @@ namespace GSB_TAC
             this.lblChoixFNrml.AutoSize = true;
             this.lblChoixFNrml.Location = new System.Drawing.Point(240, 275);
             this.lblChoixFNrml.Name = "lblChoixFNrml";
-            this.lblChoixFNrml.Size = new System.Drawing.Size(89, 13);
+            this.lblChoixFNrml.Size = new System.Drawing.Size(23, 13);
             this.lblChoixFNrml.TabIndex = 23;
-            this.lblChoixFNrml.Text = "Frais Kilometrique";
+            this.lblChoixFNrml.Text = "null";
             // 
             // lblPrixUnitNrml
             // 
@@ -297,9 +299,9 @@ namespace GSB_TAC
             this.lblLibeFraiKm.AutoSize = true;
             this.lblLibeFraiKm.Location = new System.Drawing.Point(240, 545);
             this.lblLibeFraiKm.Name = "lblLibeFraiKm";
-            this.lblLibeFraiKm.Size = new System.Drawing.Size(89, 13);
+            this.lblLibeFraiKm.Size = new System.Drawing.Size(23, 13);
             this.lblLibeFraiKm.TabIndex = 26;
-            this.lblLibeFraiKm.Text = "Frais Kilometrique";
+            this.lblLibeFraiKm.Text = "null";
             // 
             // lblMontantKM
             // 
@@ -337,11 +339,32 @@ namespace GSB_TAC
             this.lblTypeFraisKm.TabIndex = 30;
             this.lblTypeFraisKm.Text = "Type de Frais :";
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(295, 45);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(136, 13);
+            this.lblStatus.TabIndex = 31;
+            this.lblStatus.Text = "Status de la fiche de paie : ";
+            // 
+            // txtBStatus
+            // 
+            this.txtBStatus.Enabled = false;
+            this.txtBStatus.Location = new System.Drawing.Point(430, 40);
+            this.txtBStatus.Name = "txtBStatus";
+            this.txtBStatus.ReadOnly = true;
+            this.txtBStatus.Size = new System.Drawing.Size(145, 20);
+            this.txtBStatus.TabIndex = 32;
+            this.txtBStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // frmRemboursement
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1253, 621);
+            this.Controls.Add(this.txtBStatus);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.lblTypeFraisKm);
             this.Controls.Add(this.lblTypeFrais);
             this.Controls.Add(this.lblMontantKM);
@@ -420,5 +443,7 @@ namespace GSB_TAC
         private System.Windows.Forms.Label lblPrixUnitKm;
         private System.Windows.Forms.Label lblTypeFrais;
         private System.Windows.Forms.Label lblTypeFraisKm;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtBStatus;
     }
 }

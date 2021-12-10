@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace GSB_TAC
 {
@@ -33,7 +34,6 @@ namespace GSB_TAC
             lblDate.Visible = false;
             dtpHForfait.Visible = false;
 
-           
 
             cboTypeFrais.ValueMember = "id";
             cboTypeFrais.DisplayMember = "libelle";
@@ -43,42 +43,101 @@ namespace GSB_TAC
 
         private void btnValider_Click(object sender, EventArgs e)
         {
-            switch (Modele.ActionFrais)
+            if(cboTypeFrais.SelectedValue != null) {
+                if(txtbQte.Text != "" && (Regex.IsMatch(txtbQte.Text, @"^[1-9]\d*(,\d+)?$"))) {
+                    switch (Modele.ActionFrais)
+                    {
+                        case 1: //Si on ajoute un frais
+                            if (chbxHorsForfait.Checked == true)//Si on ajoute un frais hors forfait
+                            {
+                                if (txtbLibelleHf.Text != "")
+                                {
+                                    if (Modele.ajoutHorsFrais(Modele.VisiteurChoisi.idVisiteur, Modele.MoisChoisi, txtbLibelleHf.Text, dtpHForfait.Value, Convert.ToDecimal(txtbQte.Text)))
+                                    {
+                                        DialogResult = DialogResult.OK;
+                                        this.Close();
+                                    }
+                                }
+                                else
+                                {
+                                    afficheErrerur("Veuillez insérer un libellé");
+                                }
+                            }
+                            else // Si on ajoute un frais normal
+                            {
+                                int number;
+                                if (int.TryParse(txtbQte.Text, out number))
+                                {
+                                    if (Modele.verifieDonnee(Convert.ToString(cboTypeFrais.SelectedValue), Convert.ToInt32(txtbQte.Text)))
+                                    {
+
+                                        if (Modele.addFrais(Modele.VisiteurChoisi.idVisiteur, Modele.MoisChoisi, Convert.ToString(cboTypeFrais.SelectedValue), Convert.ToInt32(txtbQte.Text)))
+                                        {
+                                            DialogResult = DialogResult.OK;
+                                            this.Close();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        afficheErrerur("La quantité est en dessous/dessus des limites de la catégorie de frais");
+                                    }
+                                }
+                                else
+                                {
+                                    afficheErrerur("Vous ne pouvez pas ajouter de nombre à virgule");
+                                }
+                            }
+                            break;
+                        case 2: //Si on modifie le frais
+                            if (chbxHorsForfait.Checked == true) //Si on modifie un frais hors forfait
+                            {
+                                if (txtbLibelleHf.Text != "")
+                                {
+                                    if (Modele.modifHFrais(Convert.ToInt32(txtbQte.Text), dtpHForfait.Value, txtbLibelleHf.Text, (Modele.donneFraisHForfait(Convert.ToInt32(cboTypeFrais.SelectedIndex)))))
+                                    {
+                                        DialogResult = DialogResult.OK;
+                                        this.Close();
+                                    }
+                                }
+                                else
+                                {
+                                    afficheErrerur("Veuillez insérer un libellé");
+                                }
+                            }
+                            else // Si on modifie un frais normal
+                            {
+                                int number;
+                                if (int.TryParse(txtbQte.Text, out number))
+                                {
+                                    if (Modele.verifieDonnee(Convert.ToString(cboTypeFrais.SelectedValue), Convert.ToInt32(txtbQte.Text)))
+                                    {
+                                        if (Modele.modifFrais(Convert.ToInt32(txtbQte.Text), Modele.donneFrais(Convert.ToString(cboTypeFrais.SelectedValue))))
+                                        {
+                                            DialogResult = DialogResult.OK;
+                                            this.Close();
+                                        }
+                                    }
+                                    else
+                                    {
+                                        afficheErrerur("La quantité est en dessous/dessus des limites de la catégorie de frais");
+                                    }
+                                }
+                                else
+                                {
+                                    afficheErrerur("La quantité est en dessous/dessus des limites de la catégorie de frais");
+                                }
+                            }
+                            break;
+                    }
+                }
+                else
+                {
+                    afficheErrerur("Quantité invalide, veuillez insérer uniquement un nombre ou un nombre à virgule (uniquement pour les frais hors forfait)");
+                }
+            }
+            else
             {
-                case 1: //Si on ajoute un frais
-                    if(chbxHorsForfait.Checked == true)//Si on ajoute un frais hors forfait
-                    {
-                        if (Modele.ajoutHorsFrais(Modele.VisiteurChoisi.idVisiteur, Modele.MoisChoisi, txtbLibelleHf.Text, dtpHForfait.Value, Convert.ToDecimal(txtbQte.Text)))
-                        {
-                            DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                    }
-                    else // Si on ajoute un frais normal
-                    {
-                        if(Modele.addFrais(Modele.VisiteurChoisi.idVisiteur,Modele.MoisChoisi,Convert.ToString(cboTypeFrais.SelectedValue), Convert.ToInt32(txtbQte.Text)))
-                        {
-                            DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                    }
-                    break;
-                case 2: //Si on modifie le frais
-                    if (chbxHorsForfait.Checked == true) //Si on modifie un frais hors forfait
-                    {
-                        if (Modele.modifHFrais(Convert.ToInt32(txtbQte.Text), dtpHForfait.Value,txtbLibelleHf.Text,(Modele.donneFraisHForfait(Convert.ToInt32(cboTypeFrais.SelectedIndex))))){
-                            DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                    }
-                    else // Si on modifie un frais normal
-                    {
-                        if (Modele.modifFrais(Convert.ToInt32(txtbQte.Text), Modele.donneFrais(Convert.ToString(cboTypeFrais.SelectedValue)))){
-                            DialogResult = DialogResult.OK;
-                            this.Close();
-                        }
-                    }
-                    break;
+                afficheErrerur("Veuillez selectionner un frais");
             }
         }
 
@@ -90,13 +149,25 @@ namespace GSB_TAC
 
         private void chbxHorsForfait_CheckedChanged(object sender, EventArgs e)
         {
+            string dateChoisie = Modele.MoisChoisi;
+
+            string dateSMin = "01/" + dateChoisie.Substring(4) + "/" + dateChoisie.Substring(0, 4);
+            string dateSMax = "31/" + dateChoisie.Substring(4) + "/" + dateChoisie.Substring(0, 4);
+
+            DateTime dateMin = DateTime.Parse(dateSMin);
+            DateTime dateMax = DateTime.Parse(dateSMax);
+
             if (Modele.ActionFrais == 1)//Si on est en mode ajout
             {
                 if (chbxHorsForfait.Checked == true) //Si on ajoute un hors forfait
                 {
                     changeForm(true, true, true, true, false, "Prix : ");
+
+
+                    dtpHForfait.MinDate = dateMin;
+                    dtpHForfait.MaxDate = dateMax;
                 }
-                else //Si on ajouter un frais nrml
+                else //Si on ajoute un frais nrml
                 {
                     changeForm(false,false,false,false,true,"Quantité : ",Modele.listeTypeFraisNonExistant());
 
@@ -110,6 +181,9 @@ namespace GSB_TAC
                     {
 
                         changeForm(true, true, true, true, true, "Prix : ", null, Modele.listeFraisHForfait());
+
+                        dtpHForfait.MinDate = dateMin;
+                        dtpHForfait.MaxDate = dateMax;
                     }
                     else // Si on modifie un frais 
                     {
@@ -124,14 +198,22 @@ namespace GSB_TAC
 
         private void bsTypeFrais_CurrentChanged(object sender, EventArgs e)
         {
-                if (Modele.ActionFrais == 2)
+
+            if (Modele.ActionFrais == 2)
                 {
                     if (chbxHorsForfait.Checked == true)
                     {
-                        txtbQte.Text = Convert.ToString(Modele.donneFraisHForfait(((LigneFraisHorsForfait)bsTypeFrais.Current).id).montant);
-                        txtbLibelleHf.Text = Convert.ToString(Modele.donneFraisHForfait(((LigneFraisHorsForfait)bsTypeFrais.Current).id).libelle);
-                        dtpHForfait.Value = (DateTime)(Modele.donneFraisHForfait(((LigneFraisHorsForfait)bsTypeFrais.Current).id).date);
-                }
+                        if (Modele.listeFraisHForfait().Count != 0)
+                        {
+                            txtbQte.Text = Convert.ToString(Modele.donneFraisHForfait(((LigneFraisHorsForfait)bsTypeFrais.Current).id).montant);
+                            txtbLibelleHf.Text = Convert.ToString(Modele.donneFraisHForfait(((LigneFraisHorsForfait)bsTypeFrais.Current).id).libelle);
+                            dtpHForfait.Value = (DateTime)(Modele.donneFraisHForfait(((LigneFraisHorsForfait)bsTypeFrais.Current).id).date);
+                        }
+                        else
+                        {
+                        afficheErrerur("Impossible de modifier un frais hors forfait, il en existe aucun.");
+                        }
+                    }
                 else
                 {
                     LigneFraisForfait f = new LigneFraisForfait();
@@ -178,7 +260,12 @@ namespace GSB_TAC
             
         }
 
-
+        private void afficheErrerur(string msg)
+        {
+            MessageBoxButtons button = MessageBoxButtons.OK;
+            MessageBox.Show(msg, "Erreur", button);
+            chbxHorsForfait.Checked = false;
+        }
 
 
     }
