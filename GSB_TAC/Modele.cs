@@ -37,8 +37,19 @@ namespace GSB_TAC
 
         public static fichefrais donneFicheFrais(string mois) //Renvoi la fiche de frais d'un visiteur en fonction du mois
         {
-            return maConnexion.fichefrais.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
+            fichefrais vretour;
+
+            try
+            {
+                vretour = maConnexion.fichefrais.Where(x => x.idVisiteur == visiteurChoisi.idVisiteur)
                                          .Where(x => x.mois == mois).ToList()[0];
+            }
+            catch
+            {
+                vretour = null;
+            }
+
+            return vretour;
         }
 
         public static Etat donneEtat(string id) //Renvoi la un état de la table Etat de la BDD en foncction de son ID
