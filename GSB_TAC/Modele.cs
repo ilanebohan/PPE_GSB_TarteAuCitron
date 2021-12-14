@@ -301,6 +301,8 @@ namespace GSB_TAC
             return vretour;
 
         }
+
+        // Associe le visiteur choisi à la région passé en paramètre.
         public static bool AssocierRegion(Region region)
         {
             bool vretour = true;
@@ -363,6 +365,8 @@ namespace GSB_TAC
         /* --------------------------------------------
         * Méthodes pour vérifier le poste d'un Visiteur
           --------------------------------------------*/
+
+        // Vérifie qu'un visiteur soit Responsable de Secteur (par l'idVisiteur passé en paramètre)
         public static bool isResponsablesecteur(string id)
         {
             bool vretour = false;
@@ -375,6 +379,9 @@ namespace GSB_TAC
             }
             return vretour;
         }
+
+
+        // Vérifie qu'un visiteur soit Responsable de Region (par l'idVisiteur passé en paramètre)
         public static bool isResponsableregion(string id)
         {
             bool vretour = false;

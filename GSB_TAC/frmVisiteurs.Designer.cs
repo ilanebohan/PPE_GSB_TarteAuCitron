@@ -120,7 +120,7 @@ namespace GSB_TAC
             this.Controls.Add(this.dgvVisiteur);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmVisiteurs";
-            this.Text = "frmVisiteurs";
+            this.Text = "d";
             this.Load += new System.EventHandler(this.frmVisiteurs_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVisiteur)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegion)).EndInit();
