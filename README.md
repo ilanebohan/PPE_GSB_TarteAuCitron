@@ -1,6 +1,8 @@
 # PPE_GSB_TarteAuCitron
 
-https://img.shields.io/badge/C%20Sharp-239120.svg?style=for-the-badge&logo=C-Sharp&logoColor=white https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=Visual-Studio&logoColor=white
+![Alt text](https://img.shields.io/badge/C%20Sharp-239120.svg?style=for-the-badge&logo=C-Sharp&logoColor=white)
+![Alt text](https://img.shields.io/badge/Visual%20Studio-5C2D91.svg?style=for-the-badge&logo=Visual-Studio&logoColor=white)
+
 ---------------------------------------------------------------------------------------------------------
 
 PGI en C# (WinForm & EDMX) sur un Laboratoire Pharmaceutique fictif. 
